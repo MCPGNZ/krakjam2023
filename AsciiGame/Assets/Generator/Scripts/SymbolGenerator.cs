@@ -1,6 +1,7 @@
 namespace Krakjam
 {
     using System;
+    using System.Collections.Generic;
     using Sirenix.OdinInspector;
     using TMPro;
     using UnityEditor;
@@ -16,6 +17,20 @@ namespace Krakjam
 
         [FolderPath(AbsolutePath = false)]
         public string DefinitionPath;
+
+        [Button]
+        public List<SymbolDefinition> Generate(SymbolList list)
+        {
+            var result = new List<SymbolDefinition>();
+            var characters = list.Characters.ToCharArray();
+            foreach (var character in characters)
+            {
+                result.Add(Generate(character.ToString()));
+            }
+
+            list.Definitions = result;
+            return result;
+        }
 
         [Button]
         public SymbolDefinition Generate(string character)
@@ -34,7 +49,7 @@ namespace Krakjam
             var renderTexture = Camera.targetTexture;
             var texture2D = renderTexture.ToTexture2D();
 
-            var uniquePath = AssetDatabase.GenerateUniqueAssetPath(TexturesPath + $"\\{character}.asset");
+            var uniquePath = AssetDatabase.GenerateUniqueAssetPath(TexturesPath + $"\\Symbol_{character}.asset");
 
             AssetDatabase.CreateAsset(texture2D, uniquePath);
             AssetDatabase.SaveAssets();

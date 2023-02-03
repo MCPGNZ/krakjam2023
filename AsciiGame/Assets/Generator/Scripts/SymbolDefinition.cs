@@ -1,6 +1,5 @@
 ﻿namespace Krakjam
 {
-    using Sirenix.OdinInspector;
     using UnityEngine;
 
     public sealed class SymbolDefinition : ScriptableObject
@@ -14,11 +13,5 @@
         public float Bottom;
 
         public float Average;
-
-        [Button]
-        public void Update()
-        {
-            SymbolGenerator.CalculateDefinition(this);
-        }
     }
 }
