@@ -1,5 +1,6 @@
 namespace Krakjam
 {
+#if UNITY_EDITOR
     using System;
     using System.Collections.Generic;
     using Sirenix.OdinInspector;
@@ -139,4 +140,5 @@ namespace Krakjam
             return (0.299f * color.r + 0.587f * color.g + 0.114f * color.b);
         }
     }
+#endif
 }

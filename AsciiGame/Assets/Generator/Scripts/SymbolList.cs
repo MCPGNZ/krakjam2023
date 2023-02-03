@@ -1,5 +1,6 @@
 namespace Krakjam
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
@@ -12,6 +13,7 @@ namespace Krakjam
 
         public void GenerateList()
         {
+            throw new NotImplementedException();
         }
     }
 }
