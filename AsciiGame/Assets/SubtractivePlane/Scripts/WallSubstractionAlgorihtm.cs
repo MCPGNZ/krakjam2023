@@ -3,7 +3,7 @@ namespace Krakjam
     using UnityEngine;
 
     [ExecuteAlways]
-    public sealed class PlanePreparation : MonoBehaviour
+    public sealed class WallSubstractionAlgorihtm : MonoBehaviour
     {
         #region Inspector Variables
         [SerializeField] private Material _PlaneSubtractiveMaterial;
