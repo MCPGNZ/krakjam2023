@@ -13,7 +13,10 @@ namespace Krakjam
         #region Public Variables
         public Action OnDeath;
         public Action OnPickUpAction;
+
         public float Life = 100.0f;
+        public float InitialLife => _InitialLife;
+
         public bool IsDead;
         public float SpeedThreshold = 10.0f;
 
