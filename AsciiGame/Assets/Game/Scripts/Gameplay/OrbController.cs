@@ -5,10 +5,12 @@ namespace Krakjam
     public sealed class OrbController : MonoBehaviour
     {
         #region Inspector Variables
+        [SerializeField] private OrbType _OrbType;
         [SerializeField] private TextMesh _ScoreText;
         #endregion Inspector Variables
 
         #region Public Variables
+        public OrbType OrbType => _OrbType;
         public float Height = 0.5f;
         public float Speed = 0.5f;
         public AnimationCurve MovementCurve;
