@@ -1,7 +1,6 @@
 namespace Krakjam
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
@@ -9,6 +8,7 @@ namespace Krakjam
     public class SymbolList : ScriptableObject
     {
         public string Characters;
+        public int Resolution;
         public List<SymbolDefinition> Definitions;
 
         public void GenerateList()

@@ -20,37 +20,46 @@ namespace Krakjam
         public string DefinitionPath;
 
         [Button]
-        public List<SymbolDefinition> Generate(SymbolList list)
+        public List<SymbolDefinition> Generate(SymbolList list, int resolution)
         {
             var result = new List<SymbolDefinition>();
             var characters = list.Characters.ToCharArray();
             foreach (var character in characters)
             {
-                result.Add(Generate(character.ToString()));
+                result.Add(Generate(character.ToString(), resolution));
             }
 
             list.Definitions = result;
+            list.Resolution = resolution;
             return result;
         }
 
         [Button]
-        public SymbolDefinition Generate(string character)
+        public SymbolDefinition Generate(string character, int resolution)
         {
-            var symbol = RenderCharacter(character);
+            var symbol = RenderCharacter(character, resolution);
             var definition = GenerateDefinition(character, symbol);
 
             return definition;
         }
 
-        public Texture2D RenderCharacter(string character)
+        public Texture2D RenderCharacter(string character, int resolution)
         {
             Text.SetText(character);
-            Camera.Render();
 
             var renderTexture = Camera.targetTexture;
-            var texture2D = renderTexture.ToTexture2D();
+            if (renderTexture.width != resolution || renderTexture.height != resolution)
+            {
+                renderTexture.Release();
+                renderTexture.width = resolution;
+                renderTexture.height = resolution;
+                renderTexture.Create();
+                Camera.targetTexture = renderTexture;
+            }
+            Camera.Render();
 
-            var uniquePath = AssetDatabase.GenerateUniqueAssetPath(TexturesPath + $"\\Symbol_{character}.asset");
+            var texture2D = renderTexture.ToTexture2D();
+            var uniquePath = AssetDatabase.GenerateUniqueAssetPath(TexturesPath + $"\\Symbol_{character}_{resolution}.asset");
 
             AssetDatabase.CreateAsset(texture2D, uniquePath);
             AssetDatabase.SaveAssets();
