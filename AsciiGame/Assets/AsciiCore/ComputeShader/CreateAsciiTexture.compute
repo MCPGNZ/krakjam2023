@@ -59,11 +59,12 @@ void PrepareToCreateAsciiTexture(uint3 id : SV_DispatchThreadID)
 
         SymbolDefinition symbolDefinition;
 
-        symbolDefinition.left = (leftTopLuminance + leftBottomLuminance) * 50.0f;
-        symbolDefinition.right = (rightTopLuminance + rightBottomLuminance) * 50.0f;
-        symbolDefinition.top = (leftTopLuminance + rightTopLuminance) * 50.0f;
-        symbolDefinition.bottom = (leftBottomLuminance + rightBottomLuminance) * 50.0f;
-        symbolDefinition.avarage = (leftBottomLuminance + rightBottomLuminance + leftTopLuminance + rightTopLuminance) * 25.0f;
+        float scale = 0.5f;
+        symbolDefinition.left = (leftTopLuminance + leftBottomLuminance) * 50.0f * scale;
+        symbolDefinition.right = (rightTopLuminance + rightBottomLuminance) * 50.0f * scale;
+        symbolDefinition.top = (leftTopLuminance + rightTopLuminance) * 50.0f * scale;
+        symbolDefinition.bottom = (leftBottomLuminance + rightBottomLuminance) * 50.0f * scale;
+        symbolDefinition.avarage = (leftBottomLuminance + rightBottomLuminance + leftTopLuminance + rightTopLuminance) * 25.0f * scale;
         
         int id = 0;
         float minError = calculateMSE(symbolDefinition, _SimpleDefinition[id]);
