@@ -11,9 +11,21 @@
 
     public sealed class GameController : MonoBehaviour
     {
+        public PlayerController Player;
+
         public void OnEnable()
         {
+            Player.OnDeath += OnPlayerDeath;
             BeginGame();
+        }
+        private void OnDisable()
+        {
+            Player.OnDeath -= OnPlayerDeath;
+        }
+
+        private void OnPlayerDeath()
+        {
+            EndGame();
         }
 
         private void BeginGame()

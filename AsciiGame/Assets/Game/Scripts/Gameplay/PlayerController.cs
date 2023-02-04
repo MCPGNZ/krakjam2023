@@ -6,11 +6,19 @@ namespace Krakjam
 
     public class PlayerController : MonoBehaviour
     {
+        /* death conditions */
+        public Action OnDeath;
+        public float Life = 100.0f;
+        public bool IsDead;
+        public float SpeedThreshold = 10.0f;
+
+        /* movement parameters */
         public float MovementSpeed = 1000.0f;
 
         public float RotationSensitivity = .5f;
         public float RotationSpeed = 1;
 
+        /* jump parameters */
         public float DistanceToGround = 0.1f;
         public float JumpStrength = 100.0f;
         public LayerMask GroundMask;
@@ -25,6 +33,27 @@ namespace Krakjam
             }
         }
 
+        [ShowInInspector]
+        public float CurrentSpeed
+        {
+            get
+            {
+                if (_Rigidbody == null) { return 0.0f; }
+                return _Rigidbody.velocity.magnitude;
+            }
+        }
+
+        [ShowInInspector]
+        public bool IsBelowThreshold => CurrentSpeed < SpeedThreshold;
+
+        private float _InitialLife;
+        private Rigidbody _Rigidbody;
+
+        private Vector2 _Direction;
+        private Vector2 _Turn;
+        private bool _Jump;
+        private Vector3 _JumpNormal;
+
         private void Awake()
         {
             _Rigidbody = GetComponent<Rigidbody>();
@@ -32,6 +61,7 @@ namespace Krakjam
 
         private void OnEnable()
         {
+            _InitialLife = Life;
             Cursor.lockState = CursorLockMode.Locked;
         }
         private void OnDisable()
@@ -41,6 +71,7 @@ namespace Krakjam
 
         private void Update()
         {
+            if (IsDead) { return; }
             if (IsGrounded)
             {
                 /* movement */
@@ -66,6 +97,23 @@ namespace Krakjam
             _Turn.x += Input.GetAxis("Mouse X") * RotationSensitivity;
             _Turn.y += Input.GetAxis("Mouse Y") * RotationSensitivity;
             transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0);
+
+            /* life */
+            if (CurrentSpeed < SpeedThreshold)
+            {
+                Life -= Time.deltaTime;
+                if (Life <= 0.0f)
+                {
+                    IsDead = true;
+                    OnDeath?.Invoke();
+                    return;
+                }
+            }
+            else
+            {
+                Life += Time.deltaTime;
+                Life = Mathf.Min(Life, _InitialLife);
+            }
         }
         private void FixedUpdate()
         {
@@ -104,12 +152,5 @@ namespace Krakjam
                 Gizmos.DrawLine(transform.position, transform.position + _JumpNormal * 2.0f);
             }
         }
-
-        private Rigidbody _Rigidbody;
-
-        private Vector2 _Direction;
-        private Vector2 _Turn;
-        private bool _Jump;
-        private Vector3 _JumpNormal;
     }
 }
