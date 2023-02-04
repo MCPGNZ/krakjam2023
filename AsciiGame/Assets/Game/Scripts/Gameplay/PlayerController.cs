@@ -67,7 +67,6 @@ namespace Krakjam
             _Turn.y += Input.GetAxis("Mouse Y") * RotationSensitivity;
             transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0);
         }
-
         private void FixedUpdate()
         {
             _Rigidbody.AddForce(transform.forward * (MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
@@ -78,6 +77,19 @@ namespace Krakjam
             {
                 _Rigidbody.AddForce(_JumpNormal * JumpStrength, ForceMode.Impulse);
                 _Jump = false;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var rigidbody = other.attachedRigidbody;
+            if (rigidbody == null) { return; }
+
+            var orbController = rigidbody.GetComponent<OrbController>();
+            if (orbController != null)
+            {
+                Debug.Log("Pickup Orb");
+                orbController.Pickup();
             }
         }
 
