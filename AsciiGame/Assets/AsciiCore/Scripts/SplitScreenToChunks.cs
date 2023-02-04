@@ -122,6 +122,8 @@ namespace Krakjam
             Graphics.Blit(_ResultTexture, _ResultHighQuality);
 
             _GenerateAsciiTexture.SetTexture(_CharacterTextureArrayId, _Texture2DArray);
+            _GenerateAsciiTexture.SetInt(_ChunkSizeXId, _ChunkSizeX);
+            _GenerateAsciiTexture.SetInt(_ChunkSizeYId, _ChunkSizeY);
 
             Graphics.Blit(_ResultHighQuality, _AsciiTexture, _GenerateAsciiTexture);
 
@@ -163,6 +165,7 @@ namespace Krakjam
         private static readonly int _TextureSizeId = Shader.PropertyToID("_TextureSize");
 
         private static readonly int _CharacterTextureArrayId = Shader.PropertyToID("_CharacterTextureArray");
+
         #endregion Private Variables
 
         #region Private Methods

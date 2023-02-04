@@ -31,6 +31,7 @@ Shader "Krakjam/AsciiTexture"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float4 _MainTex_TexelSize;
 
             v2f vert(appdata v)
             {
@@ -42,10 +43,13 @@ Shader "Krakjam/AsciiTexture"
 
             UNITY_DECLARE_TEX2DARRAY(_CharacterTextureArray);
 
+            float _ChunkSizeX;
+            float _ChunkSizeY;
+
             float4 frag(v2f i) : SV_Target
             {
                 float id = tex2D(_MainTex, i.uv).r;
-                float4 col = UNITY_SAMPLE_TEX2DARRAY(_CharacterTextureArray, float3(i.uv, id));
+                float4 col = UNITY_SAMPLE_TEX2DARRAY(_CharacterTextureArray, float3((i.uv * _MainTex_TexelSize.zw) / float2(_ChunkSizeX, _ChunkSizeY), id));
                 return col;
             }
         ENDCG

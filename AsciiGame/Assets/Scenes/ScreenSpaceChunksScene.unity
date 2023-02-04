@@ -324,8 +324,8 @@ MonoBehaviour:
   _SymbolList: {fileID: 11400000, guid: dcdea92007c95ba408bc47614f322f8a, type: 2}
   _ChoosedSymbolDefinition: []
   _MainCamera: {fileID: 899137487}
-  _ChunkSizeX: 128
-  _ChunkSizeY: 90
+  _ChunkSizeX: 8
+  _ChunkSizeY: 8
   _ResultTexture: {fileID: 0}
   _ResultHighQuality: {fileID: 0}
   _AsciiTexture: {fileID: 0}

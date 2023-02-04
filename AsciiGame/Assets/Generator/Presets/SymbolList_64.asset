@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c6970a1e8245949b67eb1299cb0b0e, type: 3}
   m_Name: SymbolList_64
   m_EditorClassIdentifier: 
-  Characters: ABCDEFGXA
+  Characters: ' ABCDEFGX'
   Resolution: 128
   Definitions:
-  - {fileID: 11400000, guid: d95ccfdccea7e114e8a189ba2a6963e8, type: 2}
-  - {fileID: 11400000, guid: dae405429411cba468009ae9b7977353, type: 2}
-  - {fileID: 11400000, guid: df6284957960e9e4e8b9e0f37606be45, type: 2}
-  - {fileID: 11400000, guid: d5f3cf79b15e09d48902caf5753e9db7, type: 2}
-  - {fileID: 11400000, guid: 45ec62d99d47eaa46b9b944273c01285, type: 2}
-  - {fileID: 11400000, guid: 9a23ae302ee22e64abe1b4569c6544b1, type: 2}
-  - {fileID: 11400000, guid: 2145ebe6230db494db474f1ee3bf7f9a, type: 2}
-  - {fileID: 11400000, guid: c9cf9fcab984c2c48944821fbd798bb0, type: 2}
+  - {fileID: 11400000, guid: 78394aaf73d75394d881d89421503f46, type: 2}
+  - {fileID: 11400000, guid: 095f8e8a3160bb840b893575bd741819, type: 2}
+  - {fileID: 11400000, guid: 69bffbbb452329a47aa1561da402be6c, type: 2}
+  - {fileID: 11400000, guid: 78c33b6747644cb40b18672bcd59d392, type: 2}
+  - {fileID: 11400000, guid: c161401cc80990b4582fbedbb981f78d, type: 2}
+  - {fileID: 11400000, guid: f24f0580f47e1f9418954062b5e8969d, type: 2}
+  - {fileID: 11400000, guid: c263b482caa4a47478c1d2db7aff990d, type: 2}
+  - {fileID: 11400000, guid: 412b9fa63471635409e3beb7763bb19e, type: 2}
+  - {fileID: 11400000, guid: 79f0bc941f7ec8d4c829b308c1b7f896, type: 2}
