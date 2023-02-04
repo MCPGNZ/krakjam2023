@@ -1,15 +1,18 @@
 namespace Krakjam
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Sirenix.OdinInspector;
     using UnityEngine;
 
-    public class PlayerController : MonoBehaviour
+    public sealed class PlayerController : MonoBehaviour
     {
-        /* death conditions */
+        #region Inspector Variables
+        [SerializeField] private InGameUIController _InGameUIController;
+        #endregion Inspector Variables
+
+        #region Public Variables
         public Action OnDeath;
+        public Action OnPickUpAction;
         public float Life = 100.0f;
         public bool IsDead;
         public float SpeedThreshold = 10.0f;
@@ -48,17 +51,8 @@ namespace Krakjam
         [ShowInInspector]
         public bool IsBelowThreshold => CurrentSpeed < SpeedThreshold;
 
-        private float _InitialLife;
-        private Rigidbody _Rigidbody;
-
-        private Vector2 _Direction;
-        private Vector2 _Turn;
-        private bool _Jump;
-
-        private int _RayCount = 32;
-        private Transform _Ground;
-        private Vector3 _GroundNormal;
-
+        #endregion Public Variables
+        #region Unity Methods
         private void Awake()
         {
             _Rigidbody = GetComponent<Rigidbody>();
@@ -68,10 +62,12 @@ namespace Krakjam
         {
             _InitialLife = Life;
             Cursor.lockState = CursorLockMode.Locked;
+            OnPickUpAction += _InGameUIController.UpdateScoreUI;
         }
         private void OnDisable()
         {
             Cursor.lockState = CursorLockMode.None;
+            OnPickUpAction -= _InGameUIController.UpdateScoreUI;
         }
 
         private void Update()
@@ -103,7 +99,8 @@ namespace Krakjam
             var orbController = rigidbody.GetComponent<OrbController>();
             if (orbController != null)
             {
-                Debug.Log("Pickup Orb");
+                Game.Score++;
+                OnPickUpAction?.Invoke();
                 orbController.Pickup();
             }
         }
@@ -132,7 +129,22 @@ namespace Krakjam
                 Gizmos.DrawLine(transform.position, transform.position + quaternion * transform.up * GroundDetectionLength);
             }
         }
+        #endregion Unity Methods
 
+        #region Private Variables
+        private float _InitialLife;
+        private Rigidbody _Rigidbody;
+
+        private Vector2 _Direction;
+        private Vector2 _Turn;
+        private bool _Jump;
+
+        private int _RayCount = 32;
+        private Transform _Ground;
+        private Vector3 _GroundNormal;
+        #endregion Private Variables
+
+        #region Private Methods
         private void UpdateMovement()
         {
             if (IsGrounded)
@@ -229,5 +241,6 @@ namespace Krakjam
 
             return hitAngle != -1.0f;
         }
+        #endregion Private Methods
     }
 }
