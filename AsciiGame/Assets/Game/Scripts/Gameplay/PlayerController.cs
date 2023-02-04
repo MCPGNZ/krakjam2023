@@ -6,10 +6,6 @@ namespace Krakjam
 
     public sealed class PlayerController : MonoBehaviour
     {
-        #region Inspector Variables
-        [SerializeField] private InGameUIController _InGameUIController;
-        #endregion Inspector Variables
-
         #region Public Variables
         public Action OnDeath;
         public Action OnPickUpAction;
@@ -27,6 +23,9 @@ namespace Krakjam
 
         public float RotationSensitivity = .5f;
         public float RotationSpeed = 1;
+
+        /* dash parameters */
+        public float Dashstrength = 100.0f;
 
         /* jump parameters */
         public float DistanceToGround = 0.1f;
@@ -67,12 +66,10 @@ namespace Krakjam
             _SplitScreenChunks = GetComponentInChildren<SplitScreenToChunks>();
             _InitialLife = Life;
             Cursor.lockState = CursorLockMode.Locked;
-            OnPickUpAction += _InGameUIController.UpdateScoreUI;
         }
         private void OnDisable()
         {
             Cursor.lockState = CursorLockMode.None;
-            OnPickUpAction -= _InGameUIController.UpdateScoreUI;
         }
 
         private void Update()
@@ -92,7 +89,13 @@ namespace Krakjam
             if (_Jump)
             {
                 _Rigidbody.AddForce(_GroundNormal * JumpStrength, ForceMode.Impulse);
+
                 _Jump = false;
+            }
+            if (_Dash)
+            {
+                _Rigidbody.AddForce(Camera.transform.forward * Dashstrength, ForceMode.Impulse);
+                _Dash = false;
             }
         }
 
@@ -153,6 +156,7 @@ namespace Krakjam
         private Vector2 _Direction;
         private Vector2 _Turn;
         private bool _Jump;
+        private bool _Dash;
 
         private int _RayCount = 32;
         private Transform _Ground;
@@ -176,7 +180,6 @@ namespace Krakjam
                 if (Input.GetKey(KeyCode.S)) { _Direction += new Vector2(-1.0f, 0.0f); }
                 if (Input.GetKey(KeyCode.A)) { _Direction += new Vector2(0.0f, -1.0f); }
                 if (Input.GetKey(KeyCode.D)) { _Direction += new Vector2(0.0f, 1.0f); }
-
                 /* jump */
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -184,6 +187,14 @@ namespace Krakjam
                     {
                         _Jump = true;
                     }
+                }
+            }
+            /* Dash */
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                if (_Ground == null)
+                {
+                    _Dash = true;
                 }
             }
 
