@@ -1,0 +1,78 @@
+#pragma kernel PrepareToCreateAsciiTexture
+
+RWTexture2D<float4> _ResultTexture;
+
+Texture2D<float4> _ScreenSpaceTexutre;
+
+struct SymbolDefinition
+{
+    float left;
+    float right;
+    float top;
+    float bottom;
+    float avarage;
+};
+
+StructuredBuffer<SymbolDefinition> _SimpleDefinition;
+int _TextureSize;
+
+float pow2(float x)
+{
+    return x * x;
+}
+
+float calculateMSE(SymbolDefinition symbolDefinition, SymbolDefinition generatedSymbolDefinition)
+{
+    float left = pow2(symbolDefinition.left - generatedSymbolDefinition.left);
+    float right = pow2(symbolDefinition.right - generatedSymbolDefinition.right);
+    float top = pow2(symbolDefinition.top - generatedSymbolDefinition.top);
+    float bottom = pow2(symbolDefinition.bottom - generatedSymbolDefinition.bottom);
+    float avarage = pow2(symbolDefinition.avarage - generatedSymbolDefinition.avarage);
+
+    return (left + right + top + bottom + avarage) * 0.2f;
+}
+
+void FillTexture(int id, int2 leftBottomId, int2 rightBottomId, int2 leftTopId, int2 rightTopId)
+{
+    _ResultTexture[leftBottomId] = id;
+    _ResultTexture[rightBottomId] = id;
+    _ResultTexture[leftTopId] = id;
+    _ResultTexture[rightTopId] = id;
+}
+
+[numthreads(1, 1, 1)]
+void PrepareToCreateAsciiTexture(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x % 2 == 0 && id.y % 2 == 0)
+    {
+        const int2 leftBottomId = int2(id.x, id.y);
+        const int2 rightBottomId = int2(id.x + 1, id.y);
+        const int2 leftTopId = int2(id.x, id.y + 1);
+        const int2 rightTopId = int2(id.x + 1, id.y + 1);
+        float leftBottom = _ScreenSpaceTexutre[leftBottomId];
+        float leftTop = _ScreenSpaceTexutre[leftTopId];
+        float rightBottom = _ScreenSpaceTexutre[rightBottomId];
+        float rightTop = _ScreenSpaceTexutre[rightTopId];
+
+        SymbolDefinition symbolDefinition;
+
+        symbolDefinition.left = (leftTop + leftBottom) * 50.0f;
+        symbolDefinition.right = (rightTop + rightBottom) * 50.0f;
+        symbolDefinition.top = (leftTop + rightTop) * 50.0f;
+        symbolDefinition.bottom = (leftBottom + rightBottom) * 50.0f;
+        symbolDefinition.avarage = (leftBottom + rightBottom + leftTop + rightTop) * 25.0f;
+        int id = 0;
+        float minError = calculateMSE(symbolDefinition, _SimpleDefinition[id]);
+
+        for (int i = 0; i < _TextureSize; ++i)
+        {
+            float currentError = calculateMSE(symbolDefinition, _SimpleDefinition[i]);
+            if (minError > currentError)
+            {
+                minError = currentError;
+                id = i;
+            }
+        }
+        FillTexture(id, leftBottomId, rightBottomId, leftTopId, rightTopId);
+    }
+}

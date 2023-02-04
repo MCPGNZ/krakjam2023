@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c6970a1e8245949b67eb1299cb0b0e, type: 3}
-  m_Name: SymbolList_64
+  m_Script: {fileID: 11500000, guid: bf7ce594c69d4a8790fa3ad437c02f35, type: 3}
+  m_Name: Symbol_F_64
   m_EditorClassIdentifier: 
-  Characters: ABCDEFGX
-  Resolution: 64
-  Definitions: []
+  Character: F
+  Texture: {fileID: 2800000, guid: ac4b31c46879cfc409bb2dfd745cab07, type: 2}
+  Left: 13.405709
+  Right: 5.9229484
+  Top: 9.708938
+  Bottom: 9.030714
+  Average: 9.875435
