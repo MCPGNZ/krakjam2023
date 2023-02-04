@@ -318,10 +318,5 @@ MonoBehaviour:
   _CreateChunksFromScreenSpaceTexture: {fileID: 0}
   _GenerateAsciiTexture: {fileID: 0}
   _SymbolList: {fileID: 11400000, guid: 9384c1c3000f92d43b6045f53cf75660, type: 2}
-  _ChoosedSymbolDefinition: []
-  _ChunkSizeX: 12
-  _ChunkSizeY: 12
-  _ResultTexture: {fileID: 0}
-  _ResultHighQuality: {fileID: 0}
-  _AsciiTexture: {fileID: 0}
-  _Texture2DArray: {fileID: 0}
+  _ChunkSizeX: 16
+  _ChunkSizeY: 16

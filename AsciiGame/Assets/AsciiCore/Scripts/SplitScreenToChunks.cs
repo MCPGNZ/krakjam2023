@@ -1,17 +1,25 @@
 namespace Krakjam
 {
+    using System;
     using System.Runtime.InteropServices;
+    using Sirenix.OdinInspector;
     using UnityEngine;
 
     [ExecuteInEditMode]
     public sealed class SplitScreenToChunks : MonoBehaviour
     {
         #region Public Methods
+        [Button]
         public void Resize(int chunkX, int chunkY)
         {
-            if (chunkX != _ChunkSizeX || chunkY != _ChunkSizeY)
+            if (chunkX == _ChunkSizeX && chunkY == _ChunkSizeY)
             {
+                return;
             }
+
+            _ChunkSizeX = chunkX;
+            _ChunkSizeY = chunkY;
+            CreateChunkTextures(_ChunkSizeX, _ChunkSizeY);
         }
         #endregion Public Methods
 
@@ -25,7 +33,6 @@ namespace Krakjam
 
         [Header("Necassary Objects")]
         [SerializeField] private SymbolList _SymbolList;
-        [SerializeField] private SymbolDefinition[] _ChoosedSymbolDefinition;
 
         [Header("Variables")]
         [Range(2, 4096)]
@@ -33,27 +40,20 @@ namespace Krakjam
         [Range(2, 4096)]
         [SerializeField] private int _ChunkSizeY = 12;
 
-        [Header("Textures")]
-        [SerializeField] private RenderTexture _ResultTexture;
-        [SerializeField] private RenderTexture _ResultHighQuality;
-        [SerializeField] private RenderTexture _AsciiTexture;
-        [SerializeField] private Texture2DArray _Texture2DArray;
         #endregion Inspector Variables
 
         #region Unity Methods
         private void Awake()
         {
             _MainCamera = GetComponent<Camera>();
-        }
-        private void Start()
-        {
-            var chunksCount = new Vector2(_MainCamera.pixelWidth / _ChunkSizeX, _MainCamera.pixelHeight / _ChunkSizeY);
-
-            _LessQualityResolution = new Vector2(chunksCount.x * 2, chunksCount.y * 2);
 
             _CreateChunksFromScreenSpaceTexture = new Material(Shader.Find("Krakjam/ScreenSpaceChunks"));
             _GenerateAsciiTexture = new Material(Shader.Find("Krakjam/AsciiTexture"));
 
+            _KernelId = _PrepareTextureToGenerateAsciiTexture.FindKernel("PrepareToCreateAsciiTexture");
+        }
+        private void Start()
+        {
             _SplitScreenTexture = new RenderTexture(_MainCamera.pixelWidth, _MainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32)
             {
                 filterMode = FilterMode.Point,
@@ -70,22 +70,6 @@ namespace Krakjam
             };
             _ResultHighQuality.Create();
 
-            _SplitScreenTextureLessQuality = new RenderTexture((int)_LessQualityResolution.x, (int)_LessQualityResolution.y, 24, RenderTextureFormat.ARGBHalf)
-            {
-                filterMode = FilterMode.Point,
-                wrapMode = TextureWrapMode.Clamp,
-                enableRandomWrite = true
-            };
-            _SplitScreenTextureLessQuality.Create();
-
-            _ResultTexture = new RenderTexture((int)_LessQualityResolution.x, (int)_LessQualityResolution.y, 24, RenderTextureFormat.ARGBHalf)
-            {
-                filterMode = FilterMode.Point,
-                wrapMode = TextureWrapMode.Clamp,
-                enableRandomWrite = true
-            };
-            _ResultTexture.Create();
-
             _AsciiTexture = new RenderTexture(_MainCamera.pixelWidth, _MainCamera.pixelHeight, 24, RenderTextureFormat.ARGB32)
             {
                 filterMode = FilterMode.Point,
@@ -94,15 +78,13 @@ namespace Krakjam
             };
             _AsciiTexture.Create();
 
-            CreateTextureArray();
+            CreateChunkTextures(_ChunkSizeX, _ChunkSizeY);
 
+            CreateTextureArray();
             _CurrentSymbolsDefinition = new SymbolDefs[_SymbolList.Definitions.Count];
 
             FillSymbolsDefinition();
-
             _SymbolDefinitionBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, _SymbolList.Definitions.Count, 5 * sizeof(float));
-
-            _KernelId = _PrepareTextureToGenerateAsciiTexture.FindKernel("PrepareToCreateAsciiTexture");
         }
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
@@ -129,6 +111,21 @@ namespace Krakjam
 
             Graphics.Blit(_ResultHighQuality, _AsciiTexture, _GenerateAsciiTexture);
             Graphics.Blit(_AsciiTexture, destination);
+        }
+
+        private void OnDestroy()
+        {
+            SafeDestroy(ref _CreateChunksFromScreenSpaceTexture);
+            SafeDestroy(ref _GenerateAsciiTexture);
+
+            SafeDestroy(ref _Texture2DArray);
+
+            SafeDestroy(ref _SplitScreenTextureLessQuality);
+            SafeDestroy(ref _SplitScreenTexture);
+
+            SafeDestroy(ref _ResultTexture);
+            SafeDestroy(ref _ResultHighQuality);
+            SafeDestroy(ref _AsciiTexture);
         }
         #endregion Unity Methods
 
@@ -160,7 +157,10 @@ namespace Krakjam
         private RenderTexture _SplitScreenTexture;
         private RenderTexture _SplitScreenTextureLessQuality;
 
-        private Vector2 _LessQualityResolution;
+        private RenderTexture _ResultTexture;
+        private RenderTexture _ResultHighQuality;
+        private RenderTexture _AsciiTexture;
+        private Texture2DArray _Texture2DArray;
 
         private static readonly int _ChunkSizeXId = Shader.PropertyToID("_ChunkSizeX");
         private static readonly int _ChunkSizeYId = Shader.PropertyToID("_ChunkSizeY");
@@ -217,6 +217,68 @@ namespace Krakjam
                 _CurrentSymbolsDefinition[i].bottom = _SymbolList.Definitions[i].Bottom;
                 _CurrentSymbolsDefinition[i].avarage = _SymbolList.Definitions[i].Average;
             }
+        }
+
+        private void CreateChunkTextures(int chunksX, int chunksY)
+        {
+            var chunksCount = new Vector2Int(_MainCamera.pixelWidth / chunksX, _MainCamera.pixelHeight / chunksY);
+            var lowerQualityResolution = new Vector2Int(chunksCount.x * 2, chunksCount.y * 2);
+
+            if (_SplitScreenTextureLessQuality != null) { _SplitScreenTextureLessQuality.Release(); }
+            _SplitScreenTextureLessQuality = new RenderTexture(lowerQualityResolution.x, lowerQualityResolution.y, 24, RenderTextureFormat.ARGBHalf)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp,
+                enableRandomWrite = true
+            };
+            _SplitScreenTextureLessQuality.Create();
+
+            if (_ResultTexture != null) { _ResultTexture.Release(); }
+            _ResultTexture = new RenderTexture(lowerQualityResolution.x, lowerQualityResolution.y, 24, RenderTextureFormat.ARGBHalf)
+            {
+                filterMode = FilterMode.Point,
+                wrapMode = TextureWrapMode.Clamp,
+                enableRandomWrite = true
+            };
+            _ResultTexture.Create();
+        }
+
+        private static void SafeDestroy(ref Material material)
+        {
+            if (material == null) { return; }
+
+#if UNITY_EDITOR
+            if (Application.isPlaying == false)
+            {
+                DestroyImmediate(material);
+                material = null;
+                return;
+            }
+#endif
+            Destroy(material);
+            material = null;
+        }
+        private static void SafeDestroy(ref Texture2DArray array)
+        {
+            if (array == null) { return; }
+
+#if UNITY_EDITOR
+            if (Application.isPlaying == false)
+            {
+                DestroyImmediate(array);
+                array = null;
+                return;
+            }
+#endif
+            Destroy(array);
+            array = null;
+        }
+        private static void SafeDestroy(ref RenderTexture array)
+        {
+            if (array == null) { return; }
+
+            array.Release();
+            array = null;
         }
         #endregion Private Methods
     }
