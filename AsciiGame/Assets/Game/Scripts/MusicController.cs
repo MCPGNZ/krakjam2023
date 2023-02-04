@@ -4,31 +4,36 @@ namespace Krakjam
 
     public class MusicController : MonoSingleton<MusicController>
     {
-        public static void StartAmbinet()
+        public static void PlayAmbient()
         {
-            Instance.PlayAmbinet();
+            Instance.Internal_PlayAmbinet();
         }
-        public static void StartMusic()
+        public static void PlayMusic()
         {
-            Instance.PlayMusic();
+            Instance.Internal_PlayMusic();
+        }
+        public static void PlayButtonClick()
+        {
+            Instance.Internal_PlayButtonClick();
         }
 
         [SerializeField] private AudioSource AmbientSource;
         [SerializeField] private AudioSource MusicSource;
+        [SerializeField] private AudioSource ButtonClickSource;
 
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
         }
 
-        private void PlayAmbinet()
+        private void Internal_PlayAmbinet()
         {
             StopMusic();
 
             if (AmbientSource.isPlaying) { return; };
             AmbientSource.Play();
         }
-        private void PlayMusic()
+        private void Internal_PlayMusic()
         {
             StopAmbient();
 
@@ -43,6 +48,11 @@ namespace Krakjam
         private void StopMusic()
         {
             MusicSource.Pause();
+        }
+
+        private void Internal_PlayButtonClick()
+        {
+            ButtonClickSource.PlayOneShot(ButtonClickSource.clip);
         }
     }
 }

@@ -6,7 +6,6 @@ namespace Krakjam
     {
         #region Inspector Variables
         [SerializeField] private OrbType _OrbType;
-        [SerializeField] private TextMesh _ScoreText;
         #endregion Inspector Variables
 
         #region Public Variables
@@ -21,7 +20,6 @@ namespace Krakjam
         {
             Destroy(gameObject);
         }
-
         #endregion Public Methods
 
         #region Unity Methods
@@ -41,14 +39,11 @@ namespace Krakjam
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(transform.position, transform.position + Vector3.up * Height);
         }
-
         #endregion Unity Methods
 
         #region Private Variables
-
         private Vector3 _InitialPosition;
         private float _Time;
-
         #endregion Private Variables
     }
 }

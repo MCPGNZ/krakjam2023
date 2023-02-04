@@ -22,7 +22,7 @@ namespace Krakjam
         }
         public void OnEnable()
         {
-            MusicController.StartAmbinet();
+            MusicController.PlayAmbient();
         }
 
         private void Update()
