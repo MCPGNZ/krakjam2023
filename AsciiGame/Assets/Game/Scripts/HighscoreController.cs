@@ -76,13 +76,13 @@
                 case State.Input:
                     break;
                 case State.Show:
-                {
-                    if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        SceneReferences.LoadMenu();
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            SceneReferences.LoadMenu();
+                        }
+                        break;
                     }
-                    break;
-                }
                 default:
                     throw new ArgumentOutOfRangeException();
             }
