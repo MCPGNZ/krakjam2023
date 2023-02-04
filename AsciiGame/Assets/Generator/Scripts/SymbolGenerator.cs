@@ -63,7 +63,7 @@ namespace Krakjam
             Camera.Render();
 
             var texture2D = renderTexture.ToTexture2D();
-            var uniquePath = AssetDatabase.GenerateUniqueAssetPath(TexturesPath + $"\\Symbol_{character}_{resolution}.asset");
+            var uniquePath = AssetDatabase.GenerateUniqueAssetPath(TexturesPath + $"\\Symbol_{resolution}.asset");
 
             AssetDatabase.CreateAsset(texture2D, uniquePath);
             AssetDatabase.SaveAssets();

@@ -44,8 +44,6 @@
 
         private void Awake()
         {
-            Return.onClick.AddListener(OnReturnClicked);
-
             InputField.onSubmit.AddListener(HighscoreSubmitted);
             InputField.Select();
 
@@ -76,13 +74,13 @@
                 case State.Input:
                     break;
                 case State.Show:
+                {
+                    if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        if (Input.GetKeyDown(KeyCode.Escape))
-                        {
-                            SceneReferences.LoadMenu();
-                        }
-                        break;
+                        SceneReferences.LoadMenu();
                     }
+                    break;
+                }
                 default:
                     throw new ArgumentOutOfRangeException();
             }
