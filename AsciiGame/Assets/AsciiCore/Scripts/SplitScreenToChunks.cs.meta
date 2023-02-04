@@ -3,7 +3,15 @@ guid: 29194055fa9af5e46b4b05fab5ac6669
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
+  - _CreateChunksFromScreenSpaceTexture: {instanceID: 0}
+  - _GenerateAsciiTexture: {instanceID: 0}
+  - _SymbolList: {instanceID: 0}
+  - _ResultTexture: {instanceID: 0}
+  - _ResultHighQuality: {instanceID: 0}
+  - _AsciiTexture: {instanceID: 0}
+  - _Texture2DArray: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

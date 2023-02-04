@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf7ce594c69d4a8790fa3ad437c02f35, type: 3}
-  m_Name: Symbol_ _128
+  m_Name: Symbol_(_64
   m_EditorClassIdentifier: 
-  Character: ' '
-  Texture: {fileID: 2800000, guid: 95beafe01ee4657459aa57491404c13c, type: 2}
-  Left: 0
-  Right: 0
-  Top: 0
-  Bottom: 0
-  Average: 0
+  Character: (
+  Texture: {fileID: 2800000, guid: 84ea9b76896e4cb47b70f4ac33891874, type: 2}
+  Left: 8.019301
+  Right: 4.026694
+  Top: 5.0224037
+  Bottom: 7.831648
+  Average: 6.5504365

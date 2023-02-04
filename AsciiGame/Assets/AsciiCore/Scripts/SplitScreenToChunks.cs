@@ -1,6 +1,5 @@
 namespace Krakjam
 {
-    using System;
     using System.Runtime.InteropServices;
     using UnityEngine;
 
@@ -17,13 +16,12 @@ namespace Krakjam
         [Header("Necassary Objects")]
         [SerializeField] private SymbolList _SymbolList;
         [SerializeField] private SymbolDefinition[] _ChoosedSymbolDefinition;
-        [SerializeField] private Camera _MainCamera;
 
         [Header("Variables")]
-        [Range(0, 4096)]
-        [SerializeField] private int _ChunkSizeX;
-        [Range(0, 4096)]
-        [SerializeField] private int _ChunkSizeY;
+        [Range(2, 4096)]
+        [SerializeField] private int _ChunkSizeX = 12;
+        [Range(2, 4096)]
+        [SerializeField] private int _ChunkSizeY = 12;
 
         [Header("Textures")]
         [SerializeField] private RenderTexture _ResultTexture;
@@ -33,6 +31,10 @@ namespace Krakjam
         #endregion Inspector Variables
 
         #region Unity Methods
+        private void Awake()
+        {
+            _MainCamera = GetComponent<Camera>();
+        }
         private void Start()
         {
             var chunksCount = new Vector2(_MainCamera.pixelWidth / _ChunkSizeX, _MainCamera.pixelHeight / _ChunkSizeY);
@@ -148,6 +150,8 @@ namespace Krakjam
         #endregion Private Types
 
         #region Private Variables
+        private Camera _MainCamera;
+
         private RenderTexture _SplitScreenTexture;
         private RenderTexture _SplitScreenTextureLessQuality;
 
@@ -162,11 +166,9 @@ namespace Krakjam
         private static readonly int _TextureSizeId = Shader.PropertyToID("_TextureSize");
 
         private static readonly int _CharacterTextureArrayId = Shader.PropertyToID("_CharacterTextureArray");
-
         #endregion Private Variables
 
         #region Private Methods
-
         private SymbolDefs[] _CurrentSymbolsDefinition;
         private GraphicsBuffer _SymbolDefinitionBuffer;
 
@@ -177,13 +179,16 @@ namespace Krakjam
             // Create Texture2DArray
             var characterTexture = _SymbolList.Definitions[0].Texture;
 
-            Texture2DArray texture2DArray = new
+            var texture2DArray = new
                 Texture2DArray(characterTexture.width,
-                characterTexture.height, _SymbolList.Definitions.Count,
-                TextureFormat.RGBA32, true, false);
+                    characterTexture.height, _SymbolList.Definitions.Count,
+                    TextureFormat.RGBA32, true, false)
+            {
+                filterMode = FilterMode.Bilinear,
+                wrapMode = TextureWrapMode.Repeat
+            };
+
             // Apply settings
-            texture2DArray.filterMode = FilterMode.Bilinear;
-            texture2DArray.wrapMode = TextureWrapMode.Repeat;
             // Loop through ordinary textures and copy pixels to the
             // Texture2DArray
             for (int i = 0; i < _SymbolList.Definitions.Count; i++)
@@ -209,7 +214,6 @@ namespace Krakjam
                 _CurrentSymbolsDefinition[i].avarage = _SymbolList.Definitions[i].Average;
             }
         }
-
         #endregion Private Methods
     }
 }
