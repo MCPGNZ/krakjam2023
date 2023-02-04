@@ -55,6 +55,7 @@ namespace Krakjam
         public bool IsBelowThreshold => CurrentSpeed < SpeedThreshold;
 
         #endregion Public Variables
+
         #region Unity Methods
         private void Awake()
         {
@@ -63,6 +64,7 @@ namespace Krakjam
 
         private void OnEnable()
         {
+            _SplitScreenChunks = GetComponentInChildren<SplitScreenToChunks>();
             _InitialLife = Life;
             Cursor.lockState = CursorLockMode.Locked;
             OnPickUpAction += _InGameUIController.UpdateScoreUI;
@@ -102,6 +104,14 @@ namespace Krakjam
             var orbController = rigidbody.GetComponent<OrbController>();
             if (orbController != null)
             {
+                var orbType = orbController.OrbType;
+                MovementSpeed += orbController.OrbType.SpeedChange;
+                MovementSpeed = Math.Clamp(MovementSpeed, MIN_SPEED, MAX_SPEED);
+                var previousXChunks = _SplitScreenChunks.ChunkSizeX;
+                var previousYChunks = _SplitScreenChunks.ChunkSizeY;
+                var resizeX = Mathf.Clamp(previousXChunks + orbType.ResolutionChange, MIN_CHUNK_SIZE, MAX_CHUNK_SIZE);
+                var resizeY = Mathf.Clamp(previousXChunks + orbType.ResolutionChange, MIN_CHUNK_SIZE, MAX_CHUNK_SIZE);
+                _SplitScreenChunks.Resize(resizeX, resizeY);
                 Game.Score++;
                 OnPickUpAction?.Invoke();
                 orbController.Pickup();
@@ -135,6 +145,8 @@ namespace Krakjam
         #endregion Unity Methods
 
         #region Private Variables
+        private SplitScreenToChunks _SplitScreenChunks;
+
         private float _InitialLife;
         private Rigidbody _Rigidbody;
 
@@ -145,6 +157,13 @@ namespace Krakjam
         private int _RayCount = 32;
         private Transform _Ground;
         private Vector3 _GroundNormal;
+
+        private const float MIN_SPEED = 100.0f;
+        private const float MAX_SPEED = 1500.0f;
+
+        private const int MAX_CHUNK_SIZE = 16;
+        private const int MIN_CHUNK_SIZE = 8;
+
         #endregion Private Variables
 
         #region Private Methods

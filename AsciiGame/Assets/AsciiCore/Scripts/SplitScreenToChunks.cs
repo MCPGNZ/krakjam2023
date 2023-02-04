@@ -34,6 +34,9 @@ namespace Krakjam
             _ChunkSizeY = chunkY;
             CreateChunkTextures(_ChunkSizeX, _ChunkSizeY);
         }
+
+        public int ChunkSizeX => _ChunkSizeX;
+        public int ChunkSizeY => _ChunkSizeY;
         #endregion Public Methods
 
         #region Inspector Variables
