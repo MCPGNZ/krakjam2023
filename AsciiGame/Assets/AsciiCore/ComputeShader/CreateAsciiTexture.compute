@@ -21,6 +21,11 @@ float pow2(float x)
     return x * x;
 }
 
+float luminance(float4 color)
+{
+    return 0.299f * color.r + 0.587f * color.g + 0.114f * color.b;
+}
+
 float calculateMSE(SymbolDefinition symbolDefinition, SymbolDefinition generatedSymbolDefinition)
 {
     float left = pow2(symbolDefinition.left - generatedSymbolDefinition.left);
@@ -32,14 +37,6 @@ float calculateMSE(SymbolDefinition symbolDefinition, SymbolDefinition generated
     return (left + right + top + bottom + avarage) * 0.2f;
 }
 
-void FillTexture(int id, int2 leftBottomId, int2 rightBottomId, int2 leftTopId, int2 rightTopId)
-{
-    _ResultTexture[leftBottomId] = id;
-    _ResultTexture[rightBottomId] = id;
-    _ResultTexture[leftTopId] = id;
-    _ResultTexture[rightTopId] = id;
-}
-
 [numthreads(1, 1, 1)]
 void PrepareToCreateAsciiTexture(uint3 id : SV_DispatchThreadID)
 {
@@ -49,18 +46,25 @@ void PrepareToCreateAsciiTexture(uint3 id : SV_DispatchThreadID)
         const int2 rightBottomId = int2(id.x + 1, id.y);
         const int2 leftTopId = int2(id.x, id.y + 1);
         const int2 rightTopId = int2(id.x + 1, id.y + 1);
-        float leftBottom = _ScreenSpaceTexutre[leftBottomId];
-        float leftTop = _ScreenSpaceTexutre[leftTopId];
-        float rightBottom = _ScreenSpaceTexutre[rightBottomId];
-        float rightTop = _ScreenSpaceTexutre[rightTopId];
+
+        float4 leftBottom = _ScreenSpaceTexutre[leftBottomId];
+        float4 leftTop = _ScreenSpaceTexutre[leftTopId];
+        float4 rightBottom = _ScreenSpaceTexutre[rightBottomId];
+        float4 rightTop = _ScreenSpaceTexutre[rightTopId];
+
+        float leftBottomLuminance = luminance(leftBottom);
+        float leftTopLuminance = luminance(leftTop);
+        float rightBottomLuminance = luminance(rightBottom);
+        float rightTopLuminance = luminance(rightTop);
 
         SymbolDefinition symbolDefinition;
 
-        symbolDefinition.left = (leftTop + leftBottom) * 50.0f;
-        symbolDefinition.right = (rightTop + rightBottom) * 50.0f;
-        symbolDefinition.top = (leftTop + rightTop) * 50.0f;
-        symbolDefinition.bottom = (leftBottom + rightBottom) * 50.0f;
-        symbolDefinition.avarage = (leftBottom + rightBottom + leftTop + rightTop) * 25.0f;
+        symbolDefinition.left = (leftTopLuminance + leftBottomLuminance) * 50.0f;
+        symbolDefinition.right = (rightTopLuminance + rightBottomLuminance) * 50.0f;
+        symbolDefinition.top = (leftTopLuminance + rightTopLuminance) * 50.0f;
+        symbolDefinition.bottom = (leftBottomLuminance + rightBottomLuminance) * 50.0f;
+        symbolDefinition.avarage = (leftBottomLuminance + rightBottomLuminance + leftTopLuminance + rightTopLuminance) * 25.0f;
+        
         int id = 0;
         float minError = calculateMSE(symbolDefinition, _SimpleDefinition[id]);
 
@@ -73,6 +77,10 @@ void PrepareToCreateAsciiTexture(uint3 id : SV_DispatchThreadID)
                 id = i;
             }
         }
-        FillTexture(id, leftBottomId, rightBottomId, leftTopId, rightTopId);
+
+        _ResultTexture[leftBottomId] = float4(id, leftBottom.xyz);
+        _ResultTexture[rightBottomId] = float4(id, rightBottom.xyz);
+        _ResultTexture[leftTopId] = float4(id, leftTop.xyz);
+        _ResultTexture[rightTopId] = float4(id, rightTop.xyz);
     }
 }

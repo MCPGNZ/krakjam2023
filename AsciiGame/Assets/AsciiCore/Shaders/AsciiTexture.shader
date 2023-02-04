@@ -1,58 +1,62 @@
 Shader "Krakjam/AsciiTexture"
 {
-    Properties
-    {
-        _MainTex("Texture", 2D) = "white" {}
-    }
-        SubShader
-    {
-        Tags { "RenderType" = "Opaque" }
-        LOD 100
+	Properties
+	{
+		_MainTex("Texture", 2D) = "white" {}
+	}
+		SubShader
+	{
+		Tags { "RenderType" = "Opaque" }
+		LOD 100
 
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+		Pass
+		{
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-            #include "UnityCG.cginc"
+			#include "UnityCG.cginc"
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float2 uv : TEXCOORD0;
+			};
 
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
-            };
+			struct v2f
+			{
+				float2 uv : TEXCOORD0;
+				float4 vertex : SV_POSITION;
+			};
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            float4 _MainTex_TexelSize;
+			sampler2D _MainTex;
+			float4 _MainTex_ST;
+			float4 _MainTex_TexelSize;
 
-            v2f vert(appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                return o;
-            }
+			v2f vert(appdata v)
+			{
+				v2f o;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				return o;
+			}
 
-            UNITY_DECLARE_TEX2DARRAY(_CharacterTextureArray);
+			UNITY_DECLARE_TEX2DARRAY(_CharacterTextureArray);
 
-            float _ChunkSizeX;
-            float _ChunkSizeY;
+			float _ChunkSizeX;
+			float _ChunkSizeY;
 
-            float4 frag(v2f i) : SV_Target
-            {
-                float id = tex2D(_MainTex, i.uv).r;
-                float4 col = UNITY_SAMPLE_TEX2DARRAY(_CharacterTextureArray, float3((i.uv * _MainTex_TexelSize.zw) / float2(_ChunkSizeX, _ChunkSizeY), id));
-                return col;
-            }
-        ENDCG
-    }
-    }
+			float4 frag(v2f i) : SV_Target
+			{
+				const float4 data = tex2D(_MainTex, i.uv);
+
+				const float id = data.r;
+				const float4 sourceColor = float4(data.yzw, 1.0f);
+
+				float4 col = UNITY_SAMPLE_TEX2DARRAY(_CharacterTextureArray, float3((i.uv * _MainTex_TexelSize.zw) / float2(_ChunkSizeX, _ChunkSizeY), id));
+				return col * sourceColor;
+			}
+		ENDCG
+	}
+	}
 }

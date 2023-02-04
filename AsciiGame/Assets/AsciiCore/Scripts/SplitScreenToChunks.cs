@@ -1,6 +1,7 @@
 namespace Krakjam
 {
     using System;
+    using System.Runtime.InteropServices;
     using UnityEngine;
 
     public sealed class SplitScreenToChunks : MonoBehaviour
@@ -26,16 +27,12 @@ namespace Krakjam
 
         [Header("Textures")]
         [SerializeField] private RenderTexture _ResultTexture;
-
         [SerializeField] private RenderTexture _ResultHighQuality;
-
         [SerializeField] private RenderTexture _AsciiTexture;
-
         [SerializeField] private Texture2DArray _Texture2DArray;
         #endregion Inspector Variables
 
         #region Unity Methods
-
         private void Start()
         {
             var chunksCount = new Vector2(_MainCamera.pixelWidth / _ChunkSizeX, _MainCamera.pixelHeight / _ChunkSizeY);
@@ -114,9 +111,7 @@ namespace Krakjam
             _SymbolDefinitionBuffer.SetData(_CurrentSymbolsDefinition);
 
             _PrepareTextureToGenerateAsciiTexture.SetBuffer(_KernelId, _SimpleDefinitionId, _SymbolDefinitionBuffer);
-
             _PrepareTextureToGenerateAsciiTexture.SetInt(_TextureSizeId, _SymbolList.Definitions.Count);
-
             _PrepareTextureToGenerateAsciiTexture.Dispatch(_KernelId, _ResultTexture.width, _ResultTexture.height, 1);
 
             Graphics.Blit(_ResultTexture, _ResultHighQuality);
@@ -126,19 +121,21 @@ namespace Krakjam
             _GenerateAsciiTexture.SetInt(_ChunkSizeYId, _ChunkSizeY);
 
             Graphics.Blit(_ResultHighQuality, _AsciiTexture, _GenerateAsciiTexture);
-
             Graphics.Blit(_AsciiTexture, destination);
         }
         #endregion Unity Methods
 
         #region Private Types
+        [StructLayout(LayoutKind.Sequential)]
         private struct SymbolDefs
         {
             public float left;
             public float right;
             public float top;
             public float bottom;
+
             public float avarage;
+
             public SymbolDefs(float l, float r, float b, float t, float a)
             {
                 left = l;
