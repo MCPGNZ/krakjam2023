@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7ce594c69d4a8790fa3ad437c02f35, type: 3}
+  m_Name: Symbol_64 15
+  m_EditorClassIdentifier: 
+  Character: '{'
+  Texture: {fileID: 2800000, guid: 5ffdbe81c74139c47ac0db93b1649863, type: 2}
+  Left: 24.332676
+  Right: 53.47988
+  Top: 38.675873
+  Bottom: 40.584393
+  Average: 40.214012
