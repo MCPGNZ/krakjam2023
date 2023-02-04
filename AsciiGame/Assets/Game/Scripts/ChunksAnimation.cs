@@ -7,6 +7,8 @@ namespace Krakjam
         public SplitScreenToChunks Controller;
 
         public AnimationCurve Curve;
+        public AnimationCurve ExposureCurve;
+
         public Vector2Int StartCount;
         public Vector2Int EndCount;
         public float Period;
@@ -14,10 +16,10 @@ namespace Krakjam
         public void Update()
         {
             _Timer += Time.deltaTime;
-            var value = Vector2.Lerp(StartCount, EndCount, _Timer / Period);
+            var value = Vector2.Lerp(StartCount, EndCount, Curve.Evaluate(_Timer / Period));
 
             Controller.Resize((int)value.x, (int)value.y);
-            Controller.Exposure = Mathf.Min(1.0f, 0.5f * _Timer / Period);
+            Controller.Exposure = ExposureCurve.Evaluate(_Timer / Period);
         }
 
         private float _Timer;
