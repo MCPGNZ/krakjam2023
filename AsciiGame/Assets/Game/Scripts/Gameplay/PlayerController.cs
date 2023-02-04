@@ -92,10 +92,12 @@ namespace Krakjam
 
                 _Jump = false;
             }
-            if (_Dash)
+            if (_Dash && !_DashedOnce)
             {
+                Debug.Log("YEAH");
                 _Rigidbody.AddForce(Camera.transform.forward * Dashstrength, ForceMode.Impulse);
                 _Dash = false;
+                _DashedOnce = true;
             }
         }
 
@@ -157,6 +159,7 @@ namespace Krakjam
         private Vector2 _Turn;
         private bool _Jump;
         private bool _Dash;
+        private bool _DashedOnce = false;
 
         private int _RayCount = 32;
         private Transform _Ground;
@@ -188,6 +191,7 @@ namespace Krakjam
                         _Jump = true;
                     }
                 }
+                _DashedOnce = false;
             }
             /* Dash */
             if (Input.GetKeyDown(KeyCode.LeftShift))
