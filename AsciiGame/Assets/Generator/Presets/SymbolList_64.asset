@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c6970a1e8245949b67eb1299cb0b0e, type: 3}
   m_Name: SymbolList_64
   m_EditorClassIdentifier: 
-  Characters: ABCDEFGX
-  Resolution: 64
-  Definitions: []
+  Characters: ABCDEFGXA
+  Resolution: 128
+  Definitions:
+  - {fileID: 11400000, guid: d95ccfdccea7e114e8a189ba2a6963e8, type: 2}
+  - {fileID: 11400000, guid: dae405429411cba468009ae9b7977353, type: 2}
+  - {fileID: 11400000, guid: df6284957960e9e4e8b9e0f37606be45, type: 2}
+  - {fileID: 11400000, guid: d5f3cf79b15e09d48902caf5753e9db7, type: 2}
+  - {fileID: 11400000, guid: 45ec62d99d47eaa46b9b944273c01285, type: 2}
+  - {fileID: 11400000, guid: 9a23ae302ee22e64abe1b4569c6544b1, type: 2}
+  - {fileID: 11400000, guid: 2145ebe6230db494db474f1ee3bf7f9a, type: 2}
+  - {fileID: 11400000, guid: c9cf9fcab984c2c48944821fbd798bb0, type: 2}
