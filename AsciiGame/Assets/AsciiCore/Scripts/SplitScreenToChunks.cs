@@ -19,8 +19,6 @@ namespace Krakjam
         [SerializeField] private RenderTexture _ResultTexture;
 
         [SerializeField] private SymbolDef[] _SymbolDefinitionBuffer;
-
-        [SerializeField] private bool _IsChanged = true;
         #endregion Inspector Variables
 
         #region Unity Methods
@@ -43,7 +41,7 @@ namespace Krakjam
 
             _ChunksCount = new Vector2(_MainCamera.pixelWidth / _ChunkSizeX, _MainCamera.pixelHeight / _ChunkSizeY);
 
-            _LessQualityResolution = new Vector2(_ChunksCount.x * 4, _ChunksCount.y * 4);
+            _LessQualityResolution = new Vector2(_ChunksCount.x * 2, _ChunksCount.y * 2);
 
             _SymbolDefinitionBuffer = new SymbolDef[(int)_ChunksCount.x * (int)_ChunksCount.y];
 
@@ -70,11 +68,11 @@ namespace Krakjam
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
+            Graphics.Blit(source, destination);
             _CreateChunksFromScreenSpaceTexture.SetInt(_ChunkSizeXId, _ChunkSizeX);
             _CreateChunksFromScreenSpaceTexture.SetInt(_ChunkSizeYId, _ChunkSizeY);
             Graphics.Blit(source, _SplitScreenTexture, _CreateChunksFromScreenSpaceTexture);
             Graphics.Blit(_SplitScreenTexture, _SplitScreenTextureLessQuality);
-            Graphics.Blit(source, destination);
 
             _GenerateAsciiForScreen.SetTexture(_KernelId, _ChunkScreenTextureId, _SplitScreenTextureLessQuality);
             _GenerateAsciiForScreen.SetTexture(_KernelId, _ResultTextureId, _ResultTexture);
@@ -83,30 +81,28 @@ namespace Krakjam
 
             _GenerateAsciiForScreen.Dispatch(_KernelId, (int)_LessQualityResolution.x, (int)_LessQualityResolution.y, 1);
 
-            Texture2D result = toTexture2D(_ResultTexture);
-            var pixels = result.GetPixels32();
+            Texture2D result = toTexture2D(_ResultTexture, new Vector2((int)_LessQualityResolution.x, (int)_LessQualityResolution.y));
+            var pixels = result.GetPixels();
             int id = 0;
-            for (int y = 0; y < result.height; ++y)
-            {
-                for (int x = 0; x < result.width; ++x)
-                {
-                    if (x % 2 == 0 && y % 2 == 0)
-                    {
-                        var index = x + y * result.width;
-                        var pixel = pixels[index];
-                        var left = (pixel.r + pixel.a) * 0.5f;
-                        var right = (pixel.g + pixel.a) * 0.5f;
-                        var top = (pixel.b + pixel.a) * 0.5f;
-                        var bottom = (pixel.r + pixel.g) * 0.5f;
-                        var avarage = (pixel.r + pixel.g + pixel.b + pixel.a) * 0.25f;
 
-                        _SymbolDefinitionBuffer[id].left = left;
-                        _SymbolDefinitionBuffer[id].right = right;
-                        _SymbolDefinitionBuffer[id].top = top;
-                        _SymbolDefinitionBuffer[id].bottom = bottom;
-                        _SymbolDefinitionBuffer[id].avarage = avarage;
-                        id++;
-                    }
+            for (int y = 0; y < result.height; y += 2)
+            {
+                for (int x = 0; x < result.width; x += 2)
+                {
+                    var index = x + y * result.width;
+                    var pixel = pixels[index];
+                    var left = (pixel.r + pixel.a) * 0.5f;
+                    var right = (pixel.g + pixel.a) * 0.5f;
+                    var top = (pixel.b + pixel.a) * 0.5f;
+                    var bottom = (pixel.r + pixel.g) * 0.5f;
+                    var avarage = (pixel.r + pixel.g + pixel.b + pixel.a) * 0.25f;
+
+                    _SymbolDefinitionBuffer[id].left = left;
+                    _SymbolDefinitionBuffer[id].right = right;
+                    _SymbolDefinitionBuffer[id].top = top;
+                    _SymbolDefinitionBuffer[id].bottom = bottom;
+                    _SymbolDefinitionBuffer[id].avarage = avarage;
+                    ++id;
                 }
             }
         }
@@ -153,9 +149,9 @@ namespace Krakjam
         #endregion Private Variables
 
         #region Private Variables
-        private Texture2D toTexture2D(RenderTexture rTex)
+        private Texture2D toTexture2D(RenderTexture rTex, Vector2 resolution)
         {
-            Texture2D tex = new Texture2D(512, 512, TextureFormat.RGB24, false);
+            Texture2D tex = new Texture2D((int)resolution.x, (int)resolution.y, TextureFormat.RGB24, false);
             // ReadPixels looks at the active RenderTexture.
             RenderTexture.active = rTex;
             tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height), 0, 0);
