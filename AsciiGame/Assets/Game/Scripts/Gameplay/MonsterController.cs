@@ -35,7 +35,7 @@ namespace Krakjam
 
         private void Update()
         {
-            var t = Player.Life / Player.InitialLife;
+            var t = Player.Life / GameBalance.Life;
             var c = Curve.Evaluate(t);
             transform.localPosition = Vector3.Lerp(End, Begin, c);
         }

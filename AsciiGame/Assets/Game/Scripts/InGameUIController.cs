@@ -13,14 +13,12 @@ namespace Krakjam
         #region Public Methods
         public void UpdateScoreUI()
         {
-            _ScoreMesh.SetText($"Score: {Game.Score}");
         }
         #endregion Public Methods
 
         #region Unity Methods
         private void OnEnable()
         {
-            _ScoreMesh.SetText($"Score: {Game.Score}");
         }
         #endregion Unity Methods
     }

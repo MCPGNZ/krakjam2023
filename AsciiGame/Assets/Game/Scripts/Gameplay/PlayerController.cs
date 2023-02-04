@@ -10,8 +10,7 @@ namespace Krakjam
         public Action OnDeath;
         public Action OnPickUpAction;
 
-        public float Life = 100.0f;
-        public float InitialLife => _InitialLife;
+        public float Life;
 
         public bool IsDead;
         public float SpeedThreshold = 10.0f;
@@ -19,23 +18,15 @@ namespace Krakjam
         public Camera Camera;
 
         /* movement parameters */
-        public float MovementSpeed = 1000.0f;
-
         public float RotationSensitivity = .5f;
         public float RotationSpeed = 1;
 
-        /* dash parameters */
-        public float Dashstrength = 100.0f;
-
         /* jump parameters */
         public float DistanceToGround = 0.1f;
-        public float JumpStrength = 100.0f;
         public LayerMask GroundMask;
 
         /* ground rotation */
-        public float RotationToGroundNormalSpeed = 1.0f;
         public float GroundDetectionLength = 1.5f;
-        public float GroundForce = 1.0f;
 
         [ShowInInspector]
         public bool IsGrounded => _Ground != null;
@@ -64,7 +55,7 @@ namespace Krakjam
         private void OnEnable()
         {
             _SplitScreenChunks = GetComponentInChildren<SplitScreenToChunks>();
-            _InitialLife = Life;
+            Life = GameBalance.Life;
             Cursor.lockState = CursorLockMode.Locked;
         }
         private void OnDisable()
@@ -82,22 +73,35 @@ namespace Krakjam
         }
         private void FixedUpdate()
         {
-            _Rigidbody.AddForce(Camera.transform.forward * (MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
-            _Rigidbody.AddForce(Camera.transform.right * (MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
+            var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
+            _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
+            _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
+
             _Direction = Vector2.zero;
 
             if (_Jump)
             {
-                _Rigidbody.AddForce(_GroundNormal * JumpStrength, ForceMode.Impulse);
+                _Rigidbody.AddForce(_GroundNormal * GameBalance.JumpStrength, ForceMode.Impulse);
 
                 _Jump = false;
             }
             if (_Dash && !_DashedOnce)
             {
                 Debug.Log("YEAH");
-                _Rigidbody.AddForce(Camera.transform.forward * Dashstrength, ForceMode.Impulse);
+                _Rigidbody.AddForce(Camera.transform.forward * GameBalance.DashStrength, ForceMode.Impulse);
                 _Dash = false;
                 _DashedOnce = true;
+            }
+
+            if (IsGrounded)
+            {
+                _Rigidbody.AddForce(-_Rigidbody.velocity.normalized * _Rigidbody.velocity.sqrMagnitude *
+                    GameBalance.Friction * Time.fixedDeltaTime);
+            }
+            else
+            {
+                _Rigidbody.AddForce(-_Rigidbody.velocity.normalized * _Rigidbody.velocity.sqrMagnitude *
+                    GameBalance.MaxFriction * Time.fixedDeltaTime);
             }
         }
 
@@ -110,8 +114,8 @@ namespace Krakjam
             if (orbController != null)
             {
                 var orbType = orbController.OrbType;
-                MovementSpeed += orbController.OrbType.SpeedChange;
-                MovementSpeed = Math.Clamp(MovementSpeed, MIN_SPEED, MAX_SPEED);
+                //MovementSpeed += orbController.OrbType.SpeedChange;
+                //MovementSpeed = Math.Clamp(MovementSpeed, MIN_SPEED, MAX_SPEED);
                 var previousXChunks = _SplitScreenChunks.ChunkSizeX;
                 var previousYChunks = _SplitScreenChunks.ChunkSizeY;
                 var resizeX = Mathf.Clamp(previousXChunks + orbType.ResolutionChange, MIN_CHUNK_SIZE, MAX_CHUNK_SIZE);
@@ -152,7 +156,6 @@ namespace Krakjam
         #region Private Variables
         private SplitScreenToChunks _SplitScreenChunks;
 
-        private float _InitialLife;
         private Rigidbody _Rigidbody;
 
         private Vector2 _Direction;
@@ -170,19 +173,19 @@ namespace Krakjam
 
         private const int MAX_CHUNK_SIZE = 16;
         private const int MIN_CHUNK_SIZE = 8;
-
         #endregion Private Variables
 
         #region Private Methods
         private void UpdateMovement()
         {
+            /* movement */
+            if (Input.GetKey(KeyCode.W)) { _Direction += new Vector2(1.0f, 0.0f); }
+            if (Input.GetKey(KeyCode.S)) { _Direction += new Vector2(-1.0f, 0.0f); }
+            if (Input.GetKey(KeyCode.A)) { _Direction += new Vector2(0.0f, -1.0f); }
+            if (Input.GetKey(KeyCode.D)) { _Direction += new Vector2(0.0f, 1.0f); }
+
             if (IsGrounded)
             {
-                /* movement */
-                if (Input.GetKey(KeyCode.W)) { _Direction += new Vector2(1.0f, 0.0f); }
-                if (Input.GetKey(KeyCode.S)) { _Direction += new Vector2(-1.0f, 0.0f); }
-                if (Input.GetKey(KeyCode.A)) { _Direction += new Vector2(0.0f, -1.0f); }
-                if (Input.GetKey(KeyCode.D)) { _Direction += new Vector2(0.0f, 1.0f); }
                 /* jump */
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -223,7 +226,7 @@ namespace Krakjam
             else
             {
                 Life += Time.deltaTime;
-                Life = Mathf.Min(Life, _InitialLife);
+                Life = Mathf.Min(Life, GameBalance.Life);
             }
         }
         private void UpdateGround()
@@ -240,12 +243,12 @@ namespace Krakjam
             if (_Ground != null)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(transform.forward, _GroundNormal), Time.deltaTime * RotationToGroundNormalSpeed);
+                    Quaternion.LookRotation(transform.forward, _GroundNormal), Time.deltaTime * GameBalance.RotationToGroundNormal);
             }
             else
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(transform.forward, Vector3.up), Time.deltaTime * RotationToGroundNormalSpeed);
+                    Quaternion.LookRotation(transform.forward, Vector3.up), Time.deltaTime * GameBalance.RotationToGroundNormal);
             }
         }
 
