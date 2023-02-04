@@ -8,6 +8,19 @@ namespace Krakjam
     [ExecuteInEditMode]
     public sealed class SplitScreenToChunks : MonoBehaviour
     {
+        #region Public Variables
+        [ShowInInspector]
+        public float Exposure
+        {
+            get => _Exposure;
+            set
+            {
+                _Exposure = value;
+                _GenerateAsciiTexture.SetFloat("_Exposure", _Exposure);
+            }
+        }
+        #endregion Public Variables
+
         #region Public Methods
         [Button]
         public void Resize(int chunkX, int chunkY)
@@ -39,7 +52,6 @@ namespace Krakjam
         [SerializeField] private int _ChunkSizeX = 12;
         [Range(2, 4096)]
         [SerializeField] private int _ChunkSizeY = 12;
-
         #endregion Inspector Variables
 
         #region Unity Methods
@@ -178,6 +190,7 @@ namespace Krakjam
         private GraphicsBuffer _SymbolDefinitionBuffer;
 
         private int _KernelId;
+        private float _Exposure;
 
         private void CreateTextureArray()
         {

@@ -161,7 +161,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -147.3}
-  m_SizeDelta: {x: 488.2, y: 166}
+  m_SizeDelta: {x: 600, y: 166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64714367
 MonoBehaviour:
@@ -189,6 +189,34 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!21 &92477340
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/AsciiTexture
+  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &148345674
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.015686275, g: 0.14901961, b: 0.63529414, a: 1}
+  m_Color: {r: 0, g: 0.6567652, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -283,6 +311,55 @@ MonoBehaviour:
   NewGame: {fileID: 372518311}
   Credits: {fileID: 986002192}
   Exit: {fileID: 2133530391}
+--- !u!1 &220490800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 220490802}
+  - component: {fileID: 220490801}
+  m_Layer: 31
+  m_Name: Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &220490801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220490800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: efa85880c741cce479e52aa1780470d4, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!4 &220490802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220490800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &372518309
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,8 +519,8 @@ Canvas:
   m_GameObject: {fileID: 452843445}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 2041593400}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -535,8 +612,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 2 - Credits
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
-  m_sharedMaterial: {fileID: 1037568057468215641, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
+  m_sharedMaterial: {fileID: 3398494366381916169, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -804,7 +881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 0, y: 140.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1725279711
@@ -829,8 +906,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rootrage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
-  m_sharedMaterial: {fileID: 1037568057468215641, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
+  m_sharedMaterial: {fileID: 3398494366381916169, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -904,6 +981,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725279709}
   m_CullTransparentMesh: 1
+--- !u!21 &1784005517
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &1870546546
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,8 +1069,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1 - New Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
-  m_sharedMaterial: {fileID: 1037568057468215641, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
+  m_sharedMaterial: {fileID: 3398494366381916169, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1099,8 +1204,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3 - Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
-  m_sharedMaterial: {fileID: 1037568057468215641, guid: bbaa47568d96f5a4e8bb2444aeca8eb1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
+  m_sharedMaterial: {fileID: 3398494366381916169, guid: 3767fbe20d078914a8724ccd2ba47dc5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1185,6 +1290,9 @@ GameObject:
   - component: {fileID: 2041593401}
   - component: {fileID: 2041593400}
   - component: {fileID: 2041593399}
+  - component: {fileID: 2041593402}
+  - component: {fileID: 2041593403}
+  - component: {fileID: 2041593404}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1209,8 +1317,8 @@ Camera:
   m_GameObject: {fileID: 2041593398}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0.54901963, b: 0.83921576, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1225,7 +1333,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 45.2
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1258,6 +1366,124 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041593402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041593398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29194055fa9af5e46b4b05fab5ac6669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
+  _CreateChunksFromScreenSpaceTexture: {fileID: 1784005517}
+  _GenerateAsciiTexture: {fileID: 92477340}
+  _SymbolList: {fileID: 11400000, guid: 9384c1c3000f92d43b6045f53cf75660, type: 2}
+  _ChunkSizeX: 64
+  _ChunkSizeY: 64
+--- !u!114 &2041593403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041593398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85462d274173304fa8ce71eb933585b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 2041593402}
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  StartCount: {x: 64, y: 64}
+  EndCount: {x: 4, y: 4}
+  Period: 3
+--- !u!114 &2041593404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041593398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 2041593401}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &2133530389
 GameObject:
   m_ObjectHideFlags: 0
