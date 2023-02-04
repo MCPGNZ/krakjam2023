@@ -9,12 +9,14 @@ namespace Krakjam
         [SerializeField] private Transform _PlayerTransform;
         [SerializeField] private float _WallSpeedMovement;
         #endregion Inspector Variables
+
         #region Unity Methods
 
         // Update is called once per frame
         private void Update()
         {
-            var wallPlayerVector = _PlayerTransform.position - transform.position;
+            var playerPosition = new Vector3(_PlayerTransform.position.x, 0.0f, _PlayerTransform.position.z);
+            var wallPlayerVector = playerPosition - new Vector3(transform.position.x, 0.0f, transform.position.z);
             var wallPlayerDir = wallPlayerVector.normalized;
 
             transform.position += wallPlayerDir * _WallSpeedMovement * Time.deltaTime;
