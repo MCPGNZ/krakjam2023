@@ -257,34 +257,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5889010712777028027, guid: 4800c4cc6220da54399c635718cf4e8a, type: 3}
   m_PrefabInstance: {fileID: 415462542}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &322695322
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/ScreenSpaceChunks
-  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1001 &338085229
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,6 +314,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4229826ffcb69ef4c99277b48f4c7a6f, type: 3}
+--- !u!21 &340777581
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/AsciiTexture
+  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &381440233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,8 +2548,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745988761}
-  m_LocalRotation: {x: -0.08509498, y: 0.083594486, z: 0.0071654525, w: 0.9928341}
-  m_LocalPosition: {x: -8.838613, y: 2.1932335, z: 9.321831}
+  m_LocalRotation: {x: 0.04834887, y: -0.11151837, z: -0.0053885584, w: -0.99257094}
+  m_LocalPosition: {x: -7.6497803, y: 1.8498108, z: 9.367279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2569,8 +2569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
-  _CreateChunksFromScreenSpaceTexture: {fileID: 322695322}
-  _GenerateAsciiTexture: {fileID: 2056935407}
+  _CreateChunksFromScreenSpaceTexture: {fileID: 2106578216}
+  _GenerateAsciiTexture: {fileID: 340777581}
   _SymbolList: {fileID: 11400000, guid: dcdea92007c95ba408bc47614f322f8a, type: 2}
   _ChunkSizeX: 8
   _ChunkSizeY: 8
@@ -2936,15 +2936,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 650399420918724342, guid: 365db412e9535594fa6c8c74975b6f54, type: 3}
   m_PrefabInstance: {fileID: 1967448367}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &2056935407
+--- !u!4 &2065396324 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6882306257550726380, guid: 18423dd7e4e68bd41bcefae859c24c50, type: 3}
+  m_PrefabInstance: {fileID: 1168827972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2068957766 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6882306257550726380, guid: 18423dd7e4e68bd41bcefae859c24c50, type: 3}
+  m_PrefabInstance: {fileID: 1470551089}
+  m_PrefabAsset: {fileID: 0}
+--- !u!21 &2106578216
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/AsciiTexture
-  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -2964,16 +2974,6 @@ Material:
     m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
---- !u!4 &2065396324 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6882306257550726380, guid: 18423dd7e4e68bd41bcefae859c24c50, type: 3}
-  m_PrefabInstance: {fileID: 1168827972}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2068957766 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6882306257550726380, guid: 18423dd7e4e68bd41bcefae859c24c50, type: 3}
-  m_PrefabInstance: {fileID: 1470551089}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2142248945 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 650399420918724342, guid: 365db412e9535594fa6c8c74975b6f54, type: 3}
