@@ -10,7 +10,6 @@
 
         private void Awake()
         {
-            Return.onClick.AddListener(OnReturnClicked);
         }
         private void Update()
         {
