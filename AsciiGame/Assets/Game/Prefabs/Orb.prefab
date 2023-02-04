@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8b9809ff5ea4b41803f3e780f25c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OrbType: {fileID: 11400000, guid: 2c5a6d21abd3264469ddd936adfc29e0, type: 2}
+  _ScoreText: {fileID: 0}
   Height: 0.5
   Speed: 0.5
   MovementCurve:

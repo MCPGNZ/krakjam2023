@@ -20,6 +20,10 @@ namespace Krakjam
             Credits.onClick.AddListener(OnCreditsClicked);
             Exit.onClick.AddListener(OnExitClicked);
         }
+        public void OnEnable()
+        {
+            MusicController.PlayAmbient();
+        }
 
         private void Update()
         {
