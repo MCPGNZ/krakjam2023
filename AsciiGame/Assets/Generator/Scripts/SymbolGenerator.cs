@@ -4,6 +4,7 @@ namespace Krakjam
     using System;
     using System.Collections.Generic;
     using Sirenix.OdinInspector;
+    using Sirenix.Utilities.Editor;
     using TMPro;
     using UnityEditor;
     using UnityEngine;
@@ -31,6 +32,9 @@ namespace Krakjam
 
             list.Definitions = result;
             list.Resolution = resolution;
+            EditorUtility.SetDirty(list);
+            AssetDatabase.SaveAssetIfDirty(list);
+
             return result;
         }
 
