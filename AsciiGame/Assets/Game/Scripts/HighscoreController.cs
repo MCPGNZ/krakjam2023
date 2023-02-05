@@ -55,6 +55,8 @@
             InputField.onSubmit.AddListener(HighscoreSubmitted);
             InputField.Select();
 
+            if (Return != null) { Return.onClick.AddListener(OnReturn); }
+
             if (PlayerPrefs.HasKey(_HighscoreId))
             {
                 var json = PlayerPrefs.GetString(_HighscoreId);

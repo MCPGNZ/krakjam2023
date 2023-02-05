@@ -2,16 +2,19 @@
 {
     using Assets.Game.Scripts;
     using UnityEngine;
+    using UnityEngine.UI;
 
     public sealed class CreditsController : MonoBehaviour
     {
+        public Button Return;
+
         public void OnReturn()
         {
             SceneReferences.LoadMenu();
         }
-        private void Update()
+        private void Awake()
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) { OnReturn(); }
+            if (Return != null) { Return.onClick.AddListener(OnReturn); }
         }
     }
 }

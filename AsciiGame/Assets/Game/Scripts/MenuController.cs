@@ -13,12 +13,14 @@ namespace Krakjam
         public StoryController StoryBoardController;
         public Button NewGame;
         public Button Credits;
+        public Button Highscore;
         public Button Exit;
 
         private void Awake()
         {
             NewGame.onClick.AddListener(OnStartClicked);
             Credits.onClick.AddListener(OnCreditsClicked);
+            Highscore.onClick.AddListener(OnHighscoreClicked);
             Exit.onClick.AddListener(OnExitClicked);
         }
         public void OnEnable()
@@ -30,13 +32,18 @@ namespace Krakjam
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) { OnStartClicked(); }
             if (Input.GetKeyDown(KeyCode.Alpha2)) { OnCreditsClicked(); }
-            if (Input.GetKeyDown(KeyCode.Alpha3)) { OnExitClicked(); }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) { OnHighscoreClicked(); }
+            if (Input.GetKeyDown(KeyCode.Alpha4)) { OnExitClicked(); }
         }
 
         private void OnStartClicked()
         {
             StoryBoardController.OnStartClick += StartGame;
             StoryBoardController.ShowStory = true;
+        }
+        private void OnHighscoreClicked()
+        {
+            SceneReferences.LoadHighscore();
         }
         private void OnCreditsClicked()
         {
