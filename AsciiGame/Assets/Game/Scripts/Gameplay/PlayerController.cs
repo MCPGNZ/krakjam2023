@@ -1,8 +1,10 @@
 namespace Krakjam
 {
     using System;
+    using Assets.Game.Scripts;
     using Sirenix.OdinInspector;
     using UnityEngine;
+    using UnityEngine.InputSystem;
 
     public sealed class PlayerController : MonoBehaviour
     {
@@ -72,7 +74,11 @@ namespace Krakjam
         {
             if (IsDead) { return; }
 
-            UpdateMovement();
+            /* update value */
+            _Turn.x += _TurnInput.x * RotationSensitivity;
+            _Turn.y += _TurnInput.y * RotationSensitivity;
+            Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0.0f); ;
+
             UpdateLife();
             UpdateGround();
             if (!_DashedOnce) { _DashTimer -= Time.deltaTime; }
@@ -82,6 +88,7 @@ namespace Krakjam
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
+
             if (_PlayerMoving)
             {
                 if (!PlayerAudioSource.isPlaying && IsGrounded)
@@ -130,6 +137,7 @@ namespace Krakjam
             var rigidbody = other.attachedRigidbody;
             if (rigidbody == null) { return; }
 
+            /* orb support */
             var orbController = rigidbody.GetComponent<OrbController>();
             if (orbController != null)
             {
@@ -146,8 +154,13 @@ namespace Krakjam
                 orbController.Pickup();
                 PlayerAudioSource.PlayOneShot(GameBalance.PlayerPickupOrb);
             }
-        }
 
+            /* trap support */
+            if (other.gameObject.layer == LayerMask.NameToLayer("Trap"))
+            {
+                Debug.LogError("It's a trap");
+            }
+        }
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
@@ -196,6 +209,8 @@ namespace Krakjam
 
         private const int MAX_CHUNK_SIZE = 16;
         private const int MIN_CHUNK_SIZE = 8;
+
+        private Vector2 _TurnInput;
         #endregion Private Variables
 
         #region Private Methods
@@ -331,5 +346,41 @@ namespace Krakjam
             return hitAngle != -1.0f;
         }
         #endregion Private Methods
+
+        #region Input
+        public void OnMovement(InputAction.CallbackContext context)
+        {
+            var value = context.ReadValue<Vector2>();
+            _Direction = new Vector2(value.y, value.x);
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (IsGrounded)
+            {
+                _Jump = true;
+                _DashedOnce = false;
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (IsGrounded == false)
+            {
+                _Dash = true;
+            }
+        }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            /* look */
+            _TurnInput = context.ReadValue<Vector2>();
+        }
+
+        public void OnExit(InputAction.CallbackContext context)
+        {
+            SceneReferences.LoadGameplay();
+        }
+        #endregion Input
     }
 }
