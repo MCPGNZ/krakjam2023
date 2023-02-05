@@ -1,6 +1,8 @@
 ﻿namespace Krakjam
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using Sirenix.OdinInspector;
     using UnityEngine;
     using Random = UnityEngine.Random;
 
@@ -13,6 +15,12 @@
         public Platform Draw()
         {
             return Advanced[Random.Range(0, Advanced.Count)];
+        }
+
+        [Button]
+        public void Gather()
+        {
+            Advanced = Resources.FindObjectsOfTypeAll<Platform>().ToList();
         }
     }
 }

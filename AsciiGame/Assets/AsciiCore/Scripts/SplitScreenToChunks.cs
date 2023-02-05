@@ -30,8 +30,8 @@ namespace Krakjam
                 return;
             }
 
-            _ChunkSizeX = chunkX;
-            _ChunkSizeY = chunkY;
+            _ChunkSizeX = Mathf.Max(chunkX, 8);
+            _ChunkSizeY = Mathf.Max(chunkY, 8);
             CreateChunkTextures(_ChunkSizeX, _ChunkSizeY);
         }
 

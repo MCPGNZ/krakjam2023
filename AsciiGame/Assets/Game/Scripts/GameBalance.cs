@@ -76,6 +76,9 @@ namespace Krakjam
         public float _RotationToGroundNormal = 5.0f;
         public static float RotationToGroundNormal => Instance._RotationToGroundNormal;
 
+        public float _LifeTimeChangeSpeed = 3.0f;
+        public static float LifeTimeChangeSpeed => Instance._LifeTimeChangeSpeed;
+
         [FoldoutGroup("Start Animation", true)]
         [Range(0.0f, 200.0f)]
         public float _AnimationSpeed;
@@ -89,5 +92,9 @@ namespace Krakjam
         [FoldoutGroup("Player death settings", true)]
         public float _DeathHeighOffset;
         public static float DeathHeighOffset => Instance._DeathHeighOffset;
+
+        [FoldoutGroup("Resolution change")]
+        public float _ResolutionChangeStrength;
+        public static float ResolutionChangeStrength => Instance._ResolutionChangeStrength;
     }
 }
