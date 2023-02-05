@@ -100,6 +100,13 @@ namespace Krakjam
                     StartInfoCanvas.enabled = false;
                 }
             }
+            if (transform.position.y <= GameBalance.DeathHeighOffset)
+            {
+                IsDead = true;
+                PlayerAudioSource.PlayOneShot(GameBalance.PlayerDeathSound);
+                OnDeath?.Invoke();
+                return;
+            }
             if (IsDead) { return; }
 
             /* update value */
@@ -117,6 +124,11 @@ namespace Krakjam
             {
                 return;
             }
+            if (_Direction != Vector2.zero)
+            {
+                _PlayerMoving = true;
+            }
+
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
@@ -340,7 +352,6 @@ namespace Krakjam
         {
             var value = context.ReadValue<Vector2>();
             _Direction = new Vector2(value.y, value.x);
-            _PlayerMoving = true;
         }
 
         public void OnJump(InputAction.CallbackContext context)

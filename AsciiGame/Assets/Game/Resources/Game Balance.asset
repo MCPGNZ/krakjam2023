@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxVolume: 0.5
   _VolumeChangeRateStrength: 0.1
-  _PlayerFootstepsSound: {fileID: 8300000, guid: eb6bcac44c02df74c8ef71d10d81ec82, type: 3}
+  _PlayerFootstepsSound: {fileID: 8300000, guid: 068ba4ff891e5874896169f52068969f, type: 3}
   _PlayerDeathSound: {fileID: 8300000, guid: f63d34741f1f7d648a82981893cac789, type: 3}
   _PlayerHitSound: {fileID: 8300000, guid: 2838304230ccff942836e5de9c51575d, type: 3}
   _PlayerJumpSound: {fileID: 8300000, guid: 2b16e9c44b5995f418a397ad4ea374ec, type: 3}
@@ -33,3 +33,4 @@ MonoBehaviour:
   _RotationToGroundNormal: 5
   _AnimationSpeed: 80
   _MonsterSpeed: 0
+  _DeathHeighOffset: -30

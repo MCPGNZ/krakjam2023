@@ -85,5 +85,9 @@ namespace Krakjam
         [Range(0.0f, 30.0f)]
         public float _MonsterSpeed;
         public static float MonsterSpeed => Instance._MonsterSpeed;
+
+        [FoldoutGroup("Player death settings", true)]
+        public float _DeathHeighOffset;
+        public static float DeathHeighOffset => Instance._DeathHeighOffset;
     }
 }
