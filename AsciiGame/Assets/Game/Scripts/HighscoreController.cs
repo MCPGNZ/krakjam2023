@@ -42,6 +42,14 @@
         public GameObject HighscoreGameObject;
         public Button Return;
 
+        public void OnReturn()
+        {
+            if (CurrentState == State.Show)
+            {
+                SceneReferences.LoadMenu();
+            }
+        }
+
         private void Awake()
         {
             InputField.onSubmit.AddListener(HighscoreSubmitted);
@@ -86,10 +94,6 @@
             }
         }
 
-        private void OnReturnClicked()
-        {
-            SceneReferences.LoadMenu();
-        }
         private void HighscoreSubmitted(string name)
         {
             Database.Entries.Add(new HighscoreDatabase.Entry { Name = name, Score = Game.Score });

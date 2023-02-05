@@ -1,8 +1,10 @@
 namespace Krakjam
 {
     using System;
+    using Assets.Game.Scripts;
     using Sirenix.OdinInspector;
     using UnityEngine;
+    using UnityEngine.InputSystem;
 
     public sealed class PlayerController : MonoBehaviour
     {
@@ -67,7 +69,11 @@ namespace Krakjam
         {
             if (IsDead) { return; }
 
-            UpdateMovement();
+            /* update value */
+            _Turn.x += _TurnInput.x * RotationSensitivity;
+            _Turn.y += _TurnInput.y * RotationSensitivity;
+            Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0.0f); ;
+
             UpdateLife();
             UpdateGround();
         }
@@ -76,8 +82,6 @@ namespace Krakjam
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
-
-            _Direction = Vector2.zero;
 
             if (_Jump)
             {
@@ -133,7 +137,6 @@ namespace Krakjam
                 Debug.LogError("It's a trap");
             }
         }
-
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
@@ -180,43 +183,11 @@ namespace Krakjam
 
         private const int MAX_CHUNK_SIZE = 16;
         private const int MIN_CHUNK_SIZE = 8;
+
+        private Vector2 _TurnInput;
         #endregion Private Variables
 
         #region Private Methods
-        private void UpdateMovement()
-        {
-            /* movement */
-            if (Input.GetKey(KeyCode.W)) { _Direction += new Vector2(1.0f, 0.0f); }
-            if (Input.GetKey(KeyCode.S)) { _Direction += new Vector2(-1.0f, 0.0f); }
-            if (Input.GetKey(KeyCode.A)) { _Direction += new Vector2(0.0f, -1.0f); }
-            if (Input.GetKey(KeyCode.D)) { _Direction += new Vector2(0.0f, 1.0f); }
-
-            if (IsGrounded)
-            {
-                /* jump */
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (_Ground != null)
-                    {
-                        _Jump = true;
-                    }
-                }
-                _DashedOnce = false;
-            }
-            /* Dash */
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (_Ground == null)
-                {
-                    _Dash = true;
-                }
-            }
-
-            /* look */
-            _Turn.x += Input.GetAxis("Mouse X") * RotationSensitivity;
-            _Turn.y += Input.GetAxis("Mouse Y") * RotationSensitivity;
-            Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0.0f); ;
-        }
         private void UpdateLife()
         {
             /* life */
@@ -289,5 +260,41 @@ namespace Krakjam
             return hitAngle != -1.0f;
         }
         #endregion Private Methods
+
+        #region Input
+        public void OnMovement(InputAction.CallbackContext context)
+        {
+            var value = context.ReadValue<Vector2>();
+            _Direction = new Vector2(value.y, value.x);
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (IsGrounded)
+            {
+                _Jump = true;
+                _DashedOnce = false;
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (IsGrounded == false)
+            {
+                _Dash = true;
+            }
+        }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            /* look */
+            _TurnInput = context.ReadValue<Vector2>();
+        }
+
+        public void OnExit(InputAction.CallbackContext context)
+        {
+            SceneReferences.LoadGameplay();
+        }
+        #endregion Input
     }
 }

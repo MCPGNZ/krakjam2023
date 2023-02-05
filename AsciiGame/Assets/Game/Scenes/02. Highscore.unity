@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &130975260
+--- !u!21 &185504146
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -1456,8 +1456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
-  _CreateChunksFromScreenSpaceTexture: {fileID: 1431429342}
-  _GenerateAsciiTexture: {fileID: 130975260}
+  _CreateChunksFromScreenSpaceTexture: {fileID: 1680366872}
+  _GenerateAsciiTexture: {fileID: 185504146}
   _SymbolList: {fileID: 11400000, guid: dcdea92007c95ba408bc47614f322f8a, type: 2}
   _ChunkSizeX: 64
   _ChunkSizeY: 64
@@ -1779,7 +1779,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!21 &1431429342
+--- !u!4 &1576028799 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5119191991562065636, guid: ed2c8a310cc77154eaebcf7863474a12, type: 3}
+  m_PrefabInstance: {fileID: 4338383608883818339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!21 &1680366872
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -1807,11 +1812,6 @@ Material:
     m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
---- !u!4 &1576028799 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5119191991562065636, guid: ed2c8a310cc77154eaebcf7863474a12, type: 3}
-  m_PrefabInstance: {fileID: 4338383608883818339}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1719325101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,6 +1873,7 @@ GameObject:
   - component: {fileID: 1721986769}
   - component: {fileID: 1721986768}
   - component: {fileID: 1721986770}
+  - component: {fileID: 1721986771}
   m_Layer: 5
   m_Name: Highscore Panel
   m_TagString: Untagged
@@ -1961,6 +1962,84 @@ MonoBehaviour:
   HighscoreField: {fileID: 1192428545}
   HighscoreGameObject: {fileID: 1425313713}
   Return: {fileID: 0}
+--- !u!114 &1721986771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721986765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a636eb68d31f3124795da154eaf8ba15, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 267d232a-7c0c-4ba7-9605-908d4dd116c1
+    m_ActionName: Default/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualSenseGamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3194e575-d7cc-41d6-bb01-d8dbf18399eb
+    m_ActionName: Default/Jump[/Keyboard/space,/DualSenseGamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a8bfce7-3e39-4891-bd2f-618cd445d306
+    m_ActionName: Default/Dash[/Keyboard/shift,/DualSenseGamepadHID/rightShoulder,/DualSenseGamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3564fba6-5f8b-4a0e-8b33-a57199f037b7
+    m_ActionName: Default/Look[/DualSenseGamepadHID/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1721986770}
+        m_TargetAssemblyTypeName: Krakjam.HighscoreController, Assembly-CSharp
+        m_MethodName: OnReturn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 504ae44d-8333-4c60-a6f2-1620b938faf5
+    m_ActionName: Default/Exit[/DualSenseGamepadHID/buttonNorth,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1721986770}
+        m_TargetAssemblyTypeName: Krakjam.HighscoreController, Assembly-CSharp
+        m_MethodName: OnReturn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f3326997-54a2-4ac3-ade7-96e6e929abd7
+    m_ActionName: Default/Submit[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Default
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2110929027
 GameObject:
   m_ObjectHideFlags: 0

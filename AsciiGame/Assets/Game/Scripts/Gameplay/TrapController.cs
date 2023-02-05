@@ -1,6 +1,5 @@
 namespace Krakjam
 {
-    using System;
     using Sirenix.OdinInspector;
     using UnityEngine;
 
@@ -23,6 +22,10 @@ namespace Krakjam
             }
         }
 
+        private void Awake()
+        {
+            Player = FindObjectOfType<PlayerController>();
+        }
         private void Update()
         {
             var length = Vector3.Distance(Player.transform.position, Trap.position);
