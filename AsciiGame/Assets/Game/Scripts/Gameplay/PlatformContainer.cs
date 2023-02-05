@@ -7,10 +7,12 @@
     [CreateAssetMenu(menuName = "Krakjam/Platform Container")]
     public sealed class PlatformContainer : ScriptableObject
     {
-        public List<Platform> Platforms;
+        public List<Platform> Default;
+        public List<Platform> Advanced;
+
         public Platform Draw()
         {
-            return Platforms[Random.Range(0, Platforms.Count)];
+            return Advanced[Random.Range(0, Advanced.Count)];
         }
     }
 }

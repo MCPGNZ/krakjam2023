@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a74ff717815e4644a61ace5f3ee0894, type: 3}
   m_Name: Platform Container
   m_EditorClassIdentifier: 
-  Platforms:
-  - {fileID: 6228699810560322747, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
+  Default:
+  - {fileID: 0}
+  Advanced:
+  - {fileID: 0}

@@ -15,15 +15,31 @@ namespace Krakjam
         private void Awake()
         {
             _InstantiatedPlatforms = new List<Platform>();
-            GenerateAll();
+            GenerateDefault();
         }
 
         private List<Platform> _InstantiatedPlatforms;
 
         [Button]
-        private void GenerateAll()
+        private void GenerateDefault()
         {
-            for (int i = 0; i < _Concurrent; ++i)
+            var defaultPrefabs = _AvailablePlatforms.Default;
+            foreach (var prefab in defaultPrefabs)
+            {
+                var position = Vector3.zero;
+                if (_InstantiatedPlatforms.Count > 0)
+                {
+                    position = _InstantiatedPlatforms.Last().EndPoint;
+                }
+
+                var platform = Instantiate(prefab, transform);
+                platform.Finished += OnPlatformFinished;
+                platform.transform.position = position;
+
+                _InstantiatedPlatforms.Add(platform);
+            }
+
+            while (_InstantiatedPlatforms.Count < _Concurrent)
             {
                 GenerateNext();
             }
