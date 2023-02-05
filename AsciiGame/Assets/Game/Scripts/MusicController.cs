@@ -23,7 +23,6 @@ namespace Krakjam
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
         }
 
         private void Internal_PlayAmbinet()
