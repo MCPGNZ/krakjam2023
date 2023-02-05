@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Default:
   - {fileID: 2308910172450217006, guid: a7a9d83a08cb5cf40a50971f477a8032, type: 3}
+  - {fileID: 1830393378307714707, guid: 1e7bc48c3f281de48ad586017377d9fe, type: 3}
+  - {fileID: 5831222930949087993, guid: 0b4988264811b2e40912d2741cb58bf1, type: 3}
   Advanced:
   - {fileID: 2308910172450217006, guid: a7a9d83a08cb5cf40a50971f477a8032, type: 3}
+  - {fileID: 1830393378307714707, guid: 1e7bc48c3f281de48ad586017377d9fe, type: 3}
+  - {fileID: 5831222930949087993, guid: 0b4988264811b2e40912d2741cb58bf1, type: 3}
