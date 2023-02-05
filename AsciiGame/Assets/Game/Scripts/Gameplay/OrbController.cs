@@ -25,13 +25,13 @@ namespace Krakjam
         #region Unity Methods
         private void OnEnable()
         {
-            _InitialPosition = transform.position;
-            _Time = Random.Range(0.0f, 1.0f);
+            //_InitialPosition = transform.position;
+            //   _Time = Random.Range(0.0f, 1.0f);
         }
         private void Update()
         {
-            transform.position = _InitialPosition + Vector3.up * (MovementCurve.Evaluate(_Time * Speed) * Height);
-            _Time += Time.deltaTime;
+            //  transform.position = _InitialPosition + Vector3.up * (MovementCurve.Evaluate(_Time * Speed) * Height);
+            // _Time += Time.deltaTime;
         }
 
         private void OnDrawGizmos()

@@ -24,10 +24,10 @@ MonoBehaviour:
   _Life: 100
   _MovementSpeed: 3500
   _RotationSensitivity: 1.5
-  _JumpStrength: 15
+  _JumpStrength: 17
   _Friction: 100
   _MaxFriction: 15
-  _AirSpeed: 0.15
+  _AirSpeed: 0.35
   _SpeedThreshold: 5
   _DashStrength: 30
   _RotationToGroundNormal: 5
