@@ -2,6 +2,7 @@
 {
     using System;
     using Sirenix.OdinInspector;
+    using Sirenix.Utilities;
     using UnityEngine;
 
     public sealed class Platform : MonoBehaviour
@@ -56,6 +57,25 @@
             Gizmos.DrawWireCube(transform.position + Vector3.forward * Lenght / 2.0f, new Vector3(size, size, Lenght));
             Gizmos.color = Color.magenta * new Vector4(1.0f, 1.0f, 1.0f, 0.2f);
             Gizmos.DrawCube(transform.position + Vector3.forward * Lenght / 2.0f, new Vector3(size, size, Lenght));
+        }
+
+        [Button]
+        private void Setup()
+        {
+            var model = transform.Find("Model");
+            foreach (Transform transform in model)
+            {
+                transform.gameObject.layer = LayerMask.NameToLayer("Ground");
+            }
+
+            var renderers = model.GetComponentsInChildren<MeshRenderer>();
+            renderers.ForEach(x =>
+            {
+                if (x.GetComponent<MeshCollider>() == null)
+                {
+                    x.gameObject.AddComponent<MeshCollider>();
+                }
+            });
         }
     }
 }
