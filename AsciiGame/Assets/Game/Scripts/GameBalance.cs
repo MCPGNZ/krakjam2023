@@ -77,8 +77,13 @@ namespace Krakjam
         public static float RotationToGroundNormal => Instance._RotationToGroundNormal;
 
         [FoldoutGroup("Start Animation", true)]
-        [Range(0.0f, 100.0f)]
+        [Range(0.0f, 200.0f)]
         public float _AnimationSpeed;
         public static float AnimationSpeed => Instance._AnimationSpeed;
+
+        [FoldoutGroup("Monster settings", true)]
+        [Range(0.0f, 30.0f)]
+        public float _MonsterSpeed;
+        public static float MonsterSpeed => Instance._MonsterSpeed;
     }
 }

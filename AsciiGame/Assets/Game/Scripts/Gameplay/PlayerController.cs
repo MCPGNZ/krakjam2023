@@ -9,6 +9,7 @@ namespace Krakjam
     public sealed class PlayerController : MonoBehaviour
     {
         #region Public Variables
+        public WallMovement Monster;
         public Canvas StartInfoCanvas;
 
         public AudioSource MonsterAudioSource;
@@ -77,7 +78,6 @@ namespace Krakjam
 
                 if (_AnimationStartTimer <= 0.0f)
                 {
-                    StartInfoCanvas.enabled = false;
                     _AnimationRotationFactor += GameBalance.AnimationSpeed * Time.deltaTime;
 
                     if (_AnimationRotationFactor >= _AnimationRotationThreshold)
@@ -86,6 +86,19 @@ namespace Krakjam
                     }
                 }
                 return;
+            }
+            if (_InfoDisplayTImer >= 0.0f)
+            {
+                _InfoDisplayTImer -= Time.deltaTime;
+                StartInfoCanvas.enabled = true;
+            }
+            else
+            {
+                if (StartInfoCanvas.enabled)
+                {
+                    Monster.WallSpeedMovement = GameBalance.MonsterSpeed;
+                    StartInfoCanvas.enabled = false;
+                }
             }
             if (IsDead) { return; }
 
@@ -232,6 +245,7 @@ namespace Krakjam
         private Vector2 _TurnInput;
 
         private float _AnimationStartTimer = 2.0f;
+        private float _InfoDisplayTImer = 1.0f;
         private float _AnimationRotationFactor;
         private const float _AnimationRotationThreshold = 180.0f;
 
