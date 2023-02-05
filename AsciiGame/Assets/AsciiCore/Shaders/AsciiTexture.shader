@@ -55,6 +55,7 @@ Shader "Krakjam/AsciiTexture"
 				const float4 sourceColor = float4(data.yzw, 1.0f);
 
 				float4 col = UNITY_SAMPLE_TEX2DARRAY(_CharacterTextureArray, float3((i.uv * _MainTex_TexelSize.zw) / float2(_ChunkSizeX, _ChunkSizeY), id));
+				if (length(col.xyz) < 0.1f) { return 0.0f; }
 				return lerp(sourceColor * float4(_Exposure, _Exposure, _Exposure, 1.0), col * sourceColor, saturate(length(col.xyz)));
 			}
 		ENDCG

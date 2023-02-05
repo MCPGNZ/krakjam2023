@@ -23,7 +23,7 @@ float pow2(float x)
 
 float luminance(float4 color)
 {
-    return 0.299f * color.r + 0.587f * color.g + 0.114f * color.b;
+    return color.r + color.g + color.b;
 }
 
 float calculateMSE(SymbolDefinition symbolDefinition, SymbolDefinition generatedSymbolDefinition)
@@ -59,7 +59,7 @@ void PrepareToCreateAsciiTexture(uint3 id : SV_DispatchThreadID)
 
         SymbolDefinition symbolDefinition;
 
-        float scale = 0.5f;
+        float scale = 1.0f;
         symbolDefinition.left = (leftTopLuminance + leftBottomLuminance) * 50.0f * scale;
         symbolDefinition.right = (rightTopLuminance + rightBottomLuminance) * 50.0f * scale;
         symbolDefinition.top = (leftTopLuminance + rightTopLuminance) * 50.0f * scale;
