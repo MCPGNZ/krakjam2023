@@ -123,34 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &37933833
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/ScreenSpaceChunks
-  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1 &64714365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,8 +1846,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2249,6 +2221,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725279709}
   m_CullTransparentMesh: 1
+--- !u!21 &1805858071
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/AsciiTexture
+  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &1870546546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2670,6 +2670,34 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 88a240219d6cf8b4589669cddc365df5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 548fe456d8a87e349bcfd741a6afcf41, type: 3}
+--- !u!21 &2040815641
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &2041593398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,8 +2798,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
-  _CreateChunksFromScreenSpaceTexture: {fileID: 37933833}
-  _GenerateAsciiTexture: {fileID: 2086050511}
+  _CreateChunksFromScreenSpaceTexture: {fileID: 2040815641}
+  _GenerateAsciiTexture: {fileID: 1805858071}
   _SymbolList: {fileID: 11400000, guid: dcdea92007c95ba408bc47614f322f8a, type: 2}
   _ChunkSizeX: 16
   _ChunkSizeY: 16
@@ -2846,7 +2874,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   StartCount: {x: 64, y: 64}
-  EndCount: {x: 4, y: 4}
+  EndCount: {x: 8, y: 8}
   Period: 3
 --- !u!114 &2041593404
 MonoBehaviour:
@@ -2913,34 +2941,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5226664780096283930, guid: 548fe456d8a87e349bcfd741a6afcf41, type: 3}
   m_PrefabInstance: {fileID: 646219714}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &2086050511
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/AsciiTexture
-  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1001 &2099726917
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -268,7 +268,7 @@ namespace Krakjam
         }
         private void UpdateLife()
         {
-            float monterVolume = Mathf.Lerp(GameBalance.MaxVolume, 0.0f, Mathf.Pow(Normalization(Life, 0.0f, GameBalance.Life), 4.0f));
+            float monterVolume = Mathf.Lerp(GameBalance.MaxVolume, 0.0f, Mathf.Pow(Normalization(Life, 0.0f, GameBalance.Life), GameBalance.VolumeChangeRateStrength));
 
             MonsterAudioSource.volume = monterVolume;
             /* life */

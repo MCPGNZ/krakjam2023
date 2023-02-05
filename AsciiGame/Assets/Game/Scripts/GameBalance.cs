@@ -11,6 +11,9 @@ namespace Krakjam
         public float _MaxVolume;
         public static float MaxVolume => Instance._MaxVolume;
 
+        public float _VolumeChangeRateStrength;
+        public static float VolumeChangeRateStrength => Instance._VolumeChangeRateStrength;
+
         [FoldoutGroup("Player AudioSource", true)]
         public AudioClip _PlayerFootstepsSound;
         public static AudioClip PlayerFootsteps => Instance._PlayerFootstepsSound;

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Game Balance
   m_EditorClassIdentifier: 
   _MaxVolume: 0.5
+  _VolumeChangeRateStrength: 0.1
   _PlayerFootstepsSound: {fileID: 8300000, guid: eb6bcac44c02df74c8ef71d10d81ec82, type: 3}
   _PlayerDeathSound: {fileID: 8300000, guid: f63d34741f1f7d648a82981893cac789, type: 3}
   _PlayerHitSound: {fileID: 8300000, guid: 2838304230ccff942836e5de9c51575d, type: 3}
@@ -20,7 +21,7 @@ MonoBehaviour:
   _PlayerDashSound: {fileID: 8300000, guid: 30b54ee410f535e4b9aaee2024b2d1cf, type: 3}
   _MonsterSound: {fileID: 8300000, guid: 5dbf851e582893a4e8f1e0f9eaccfdb2, type: 3}
   _PlayerPickupOrb: {fileID: 8300000, guid: 55c556c133a4e6a42836092791145d7f, type: 3}
-  _Life: 10000
+  _Life: 100
   _MovementSpeed: 1500
   _JumpStrength: 15
   _Friction: 100
