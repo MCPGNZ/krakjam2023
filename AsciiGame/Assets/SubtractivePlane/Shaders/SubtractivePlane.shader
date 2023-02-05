@@ -6,6 +6,8 @@ Shader "Custom/SubtractivePlane"
     {
         _Color("Color", Color) = (1,1,1,1)
         _MainTex("Albedo (RGB)", 2D) = "white" {}
+        _NormalMap("Normal map", 2D) = "black" {}
+        _EmmisiveTexture("Emisive Texture", 2D) = "black"{}
         _Glossiness("Smoothness", Range(0,1)) = 0.5
         _Metallic("Metallic", Range(0,1)) = 0.0
         _PlaneNormal("Plane Normal", Vector) = (0, 0, 1, 0)
@@ -25,10 +27,13 @@ Shader "Custom/SubtractivePlane"
             #pragma target 5.0
 
             sampler2D _MainTex;
+            sampler2D _NormalMap;
+            sampler2D _EmmisiveTexture;
 
             struct Input
             {
                 float2 uv_MainTex;
+                float2 uv_BumpMap;
                 float3 worldPos;
             };
 
@@ -92,7 +97,8 @@ Shader "Custom/SubtractivePlane"
                 o.Albedo = c.rgb;
                 o.Metallic = _Metallic;
                 o.Smoothness = _Glossiness;
-
+                o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_BumpMap));
+                o.Emission = tex2D(_EmmisiveTexture, IN.uv_MainTex);
                 o.Alpha = c.a;
             }
             ENDCG
