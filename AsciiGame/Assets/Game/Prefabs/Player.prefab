@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1510ac1a4790dec49a92a4c03ab85794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Monster: {fileID: 0}
   StartInfoCanvas: {fileID: 0}
   MonsterAudioSource: {fileID: 0}
   PlayerAudioSource: {fileID: 0}
@@ -932,11 +933,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5672203238535286447}
   - component: {fileID: 843328954116677676}
-  - component: {fileID: 4728710739157663223}
   - component: {fileID: 2798972608427608695}
   m_Layer: 0
   m_Name: Enviro Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1000,14 +1000,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4728710739157663223
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8543730895963677239}
-  m_Enabled: 1
 --- !u!114 &2798972608427608695
 MonoBehaviour:
   m_ObjectHideFlags: 0
