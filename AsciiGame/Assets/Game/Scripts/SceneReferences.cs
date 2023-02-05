@@ -18,7 +18,11 @@
 
         public static async void LoadHighscore(bool input)
         {
-            SceneManager.sceneLoaded += OnHighscoreLoaded;
+            if (input == false)
+            {
+                SceneManager.sceneLoaded += OnHighscoreLoaded;
+            }
+
             SceneManager.LoadScene("02. Highscore");
         }
 

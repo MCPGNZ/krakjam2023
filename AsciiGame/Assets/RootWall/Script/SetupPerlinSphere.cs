@@ -13,6 +13,10 @@ namespace Krakjam
 
         private void OnValidate()
         {
+            if (_PerlinNoiseMovement == null)
+            {
+                return;
+            }
 #if UNITY_EDITOR
             _PerlinNoiseMovement.SetFloat(_PerlinFrequencyId, _PerlinNoiseFrequency);
             _PerlinNoiseMovement.SetFloat(_PerlinAmplitudeId, _PerlinNoiseAmplitude);
