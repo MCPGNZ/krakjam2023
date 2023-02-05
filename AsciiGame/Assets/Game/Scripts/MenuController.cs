@@ -43,7 +43,7 @@ namespace Krakjam
         }
         private void OnHighscoreClicked()
         {
-            SceneReferences.LoadHighscore();
+            SceneReferences.LoadHighscore(false);
         }
         private void OnCreditsClicked()
         {

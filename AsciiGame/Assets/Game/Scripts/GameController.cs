@@ -36,7 +36,7 @@
         [Button]
         private void EndGame()
         {
-            SceneReferences.LoadHighscore();
+            SceneReferences.LoadHighscore(true);
         }
     }
 }

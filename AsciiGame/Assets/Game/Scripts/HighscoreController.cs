@@ -42,6 +42,12 @@
         public GameObject HighscoreGameObject;
         public Button Return;
 
+        public void SwitchToScores()
+        {
+            CurrentState = State.Show;
+            ShowHighscore();
+        }
+
         public void OnReturn()
         {
             if (CurrentState == State.Show)

@@ -31,7 +31,7 @@ namespace Krakjam
         #region Private Methods
         private void EndGame()
         {
-            SceneReferences.LoadHighscore();
+            SceneReferences.LoadHighscore(true);
         }
         #endregion Private Methods
     }

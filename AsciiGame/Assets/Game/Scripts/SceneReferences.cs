@@ -1,5 +1,8 @@
 ﻿namespace Assets.Game.Scripts
 {
+    using System.Threading.Tasks;
+    using Krakjam;
+    using UnityEngine;
     using UnityEngine.SceneManagement;
 
     public static class SceneReferences
@@ -12,10 +15,21 @@
         {
             SceneManager.LoadScene("01. Gameplay");
         }
-        public static void LoadHighscore()
+
+        public static async void LoadHighscore(bool input)
         {
+            SceneManager.sceneLoaded += OnHighscoreLoaded;
             SceneManager.LoadScene("02. Highscore");
         }
+
+        private static void OnHighscoreLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            SceneManager.sceneLoaded -= OnHighscoreLoaded;
+
+            var controller = Object.FindObjectOfType<HighscoreController>();
+            controller.SwitchToScores();
+        }
+
         public static void LoadCredits()
         {
             SceneManager.LoadScene("03. Credits");
