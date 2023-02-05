@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 793750882825651601}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Root2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7080476283249816269, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: -4084672777538192892, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
@@ -98,6 +102,10 @@ PrefabInstance:
     - target: {fileID: -3837255680886944796, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -77.876686
+      objectReference: {fileID: 0}
+    - target: {fileID: -38621603145786519, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 147196130981231728, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -115,10 +123,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: macka2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1670805411799936188, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2234638374124979267, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 4369358362082578141, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f95c9e36e6c09c644b7ac9587d361513, type: 2}
+    - target: {fileID: 6866880679909356167, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487167654232718067, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 8615146471691865630, guid: b84f3909724e2e54298fb6629dea4548, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -5.510375
