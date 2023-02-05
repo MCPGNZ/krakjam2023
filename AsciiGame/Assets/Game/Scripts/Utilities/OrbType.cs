@@ -10,7 +10,9 @@ namespace Krakjam
         #endregion Public Variables
 
         #region Inspector Variables
+        [Range(-1.5f, 1.5f)]
         [SerializeField] private float _SpeedChange;
+        [Range(-5, 5)]
         [SerializeField] private int _ResolutionChange;
         #endregion Inspector Variables
     }

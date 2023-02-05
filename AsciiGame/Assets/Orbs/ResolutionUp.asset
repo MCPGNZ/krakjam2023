@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b75266be781616408d45723efdc922e, type: 3}
   m_Name: ResolutionUp
   m_EditorClassIdentifier: 
-  _SpeedChange: -100
+  _SpeedChange: -1.5
   _ResolutionChange: -2
