@@ -75,5 +75,10 @@ namespace Krakjam
         [FoldoutGroup("Player", true)]
         public float _RotationToGroundNormal = 5.0f;
         public static float RotationToGroundNormal => Instance._RotationToGroundNormal;
+
+        [FoldoutGroup("Start Animation", true)]
+        [Range(0.0f, 100.0f)]
+        public float _AnimationSpeed;
+        public static float AnimationSpeed => Instance._AnimationSpeed;
     }
 }

@@ -9,6 +9,8 @@ namespace Krakjam
     public sealed class PlayerController : MonoBehaviour
     {
         #region Public Variables
+        public Canvas StartInfoCanvas;
+
         public AudioSource MonsterAudioSource;
         public AudioSource PlayerAudioSource;
 
@@ -68,12 +70,29 @@ namespace Krakjam
 
         private void Update()
         {
+            Camera.transform.localRotation = Quaternion.Euler(0.0f, _AnimationRotationFactor, 0.0f);
+            if (!_IsAnimationEnd)
+            {
+                _AnimationStartTimer -= Time.deltaTime;
+
+                if (_AnimationStartTimer <= 0.0f)
+                {
+                    StartInfoCanvas.enabled = false;
+                    _AnimationRotationFactor += GameBalance.AnimationSpeed * Time.deltaTime;
+
+                    if (_AnimationRotationFactor >= _AnimationRotationThreshold)
+                    {
+                        _IsAnimationEnd = true;
+                    }
+                }
+                return;
+            }
             if (IsDead) { return; }
 
             /* update value */
             _Turn.x += _TurnInput.x * GameBalance.RotationSensitivity;
             _Turn.y += _TurnInput.y * GameBalance.RotationSensitivity;
-            Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0.0f); ;
+            Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x + _AnimationRotationFactor, 0.0f); ;
 
             UpdateLife();
             UpdateGround();
@@ -81,6 +100,10 @@ namespace Krakjam
         }
         private void FixedUpdate()
         {
+            if (!_IsAnimationEnd)
+            {
+                return;
+            }
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
@@ -207,6 +230,12 @@ namespace Krakjam
         private const int MIN_CHUNK_SIZE = 8;
 
         private Vector2 _TurnInput;
+
+        private float _AnimationStartTimer = 2.0f;
+        private float _AnimationRotationFactor;
+        private const float _AnimationRotationThreshold = 180.0f;
+
+        private bool _IsAnimationEnd = false;
         #endregion Private Variables
 
         #region Private Methods

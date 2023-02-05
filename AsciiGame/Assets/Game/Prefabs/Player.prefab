@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1510ac1a4790dec49a92a4c03ab85794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartInfoCanvas: {fileID: 0}
   MonsterAudioSource: {fileID: 0}
   PlayerAudioSource: {fileID: 0}
   Life: 10
