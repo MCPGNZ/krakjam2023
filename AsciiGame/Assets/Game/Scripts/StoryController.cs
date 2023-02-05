@@ -4,9 +4,7 @@ namespace Krakjam
     using TMPro;
     using System.Collections.Generic;
     using System;
-    using UnityEditor.Timeline.Actions;
     using UnityEngine.InputSystem;
-    using UnityEngine.InputSystem.UI;
 
     public sealed class StoryController : MonoBehaviour
     {
