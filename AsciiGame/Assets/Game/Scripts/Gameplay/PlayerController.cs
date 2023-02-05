@@ -110,6 +110,7 @@ namespace Krakjam
             var rigidbody = other.attachedRigidbody;
             if (rigidbody == null) { return; }
 
+            /* orb support */
             var orbController = rigidbody.GetComponent<OrbController>();
             if (orbController != null)
             {
@@ -124,6 +125,12 @@ namespace Krakjam
                 Game.Score++;
                 OnPickUpAction?.Invoke();
                 orbController.Pickup();
+            }
+
+            /* trap support */
+            if (other.gameObject.layer == LayerMask.NameToLayer("Trap"))
+            {
+                Debug.LogError("It's a trap");
             }
         }
 
