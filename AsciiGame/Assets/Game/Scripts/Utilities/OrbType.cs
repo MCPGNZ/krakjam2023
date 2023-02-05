@@ -6,14 +6,11 @@ namespace Krakjam
     {
         #region Public Variables
         public float SpeedChange => _SpeedChange;
-        public int ResolutionChange => _ResolutionChange;
         #endregion Public Variables
 
         #region Inspector Variables
-        [Range(-1.5f, 1.5f)]
+        [Range(-1000.0f, 1000.0f)]
         [SerializeField] private float _SpeedChange;
-        [Range(-5, 5)]
-        [SerializeField] private int _ResolutionChange;
         #endregion Inspector Variables
     }
 }

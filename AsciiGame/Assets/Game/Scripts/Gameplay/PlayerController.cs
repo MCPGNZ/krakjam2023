@@ -42,7 +42,7 @@ namespace Krakjam
             get
             {
                 if (_Rigidbody == null) { return 0.0f; }
-                return _Rigidbody.velocity.magnitude * MovementSpeedMultiplicator;
+                return _Rigidbody.velocity.magnitude + _DefaultSpeed * MovementSpeedMultiplicator;
             }
         }
 
@@ -175,11 +175,6 @@ namespace Krakjam
                 var orbType = orbController.OrbType;
                 MovementSpeedMultiplicator += orbController.OrbType.SpeedChange;
                 MovementSpeedMultiplicator = Math.Clamp(MovementSpeedMultiplicator, MIN_SPEED, MAX_SPEED);
-                var previousXChunks = _SplitScreenChunks.ChunkSizeX;
-                var previousYChunks = _SplitScreenChunks.ChunkSizeY;
-                var resizeX = Mathf.Clamp(previousXChunks + orbType.ResolutionChange, MIN_CHUNK_SIZE, MAX_CHUNK_SIZE);
-                var resizeY = Mathf.Clamp(previousXChunks + orbType.ResolutionChange, MIN_CHUNK_SIZE, MAX_CHUNK_SIZE);
-                _SplitScreenChunks.Resize(resizeX, resizeY);
                 Game.Score++;
                 OnPickUpAction?.Invoke();
                 orbController.Pickup();
@@ -236,10 +231,7 @@ namespace Krakjam
         private Vector3 _GroundNormal;
 
         private const float MIN_SPEED = 0.2f;
-        private const float MAX_SPEED = 7.0f;
-
-        private const int MAX_CHUNK_SIZE = 16;
-        private const int MIN_CHUNK_SIZE = 8;
+        private const float MAX_SPEED = 1000.0f;
 
         private Vector2 _TurnInput;
 
@@ -250,6 +242,8 @@ namespace Krakjam
 
         private int _PreviousChunkX;
         private int _PreviousChunkY;
+
+        private float _DefaultSpeed = 1.0f;
 
         private bool _IsAnimationEnd = false;
         #endregion Private Variables
