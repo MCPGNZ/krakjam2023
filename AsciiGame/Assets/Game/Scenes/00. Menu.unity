@@ -123,34 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &63986489
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/AsciiTexture
-  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1 &64714365
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +767,34 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5226664780096283930, guid: 548fe456d8a87e349bcfd741a6afcf41, type: 3}
   m_PrefabInstance: {fileID: 110788422}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &442690754
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &452843445
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,38 +917,16 @@ MonoBehaviour:
   - {fileID: 4338383609869716859}
   - {fileID: 4338383609869716858}
   - {fileID: 4338383609869716857}
-  _StoryBoardShowTime: 4
+  _StoryBoardShowTime: 6
   _StoryBoards:
-  - '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-    qui officia deserunt mollit anim id est laborum."'
-  - '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis
-    et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
-    quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-    dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-    qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-    non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-    voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-    suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel
-    eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
-    vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"'
-  - '"But I must explain to you how all this mistaken idea of denouncing pleasure
-    and praising pain was born and I will give you a complete account of the system,
-    and expound the actual teachings of the great explorer of the truth, the master-builder
-    of human happiness. No one rejects, dislikes, or avoids pleasure itself, because
-    it is pleasure, but because those who do not know how to pursue pleasure rationally
-    encounter consequences that are extremely painful. Nor again is there anyone
-    who loves or pursues or desires to obtain pain of itself, because it is pain,
-    but because occasionally circumstances occur in which toil and pain can procure
-    him some great pleasure. To take a trivial example, which of us ever undertakes
-    laborious physical exercise, except to obtain some advantage from it? But who
-    has any right to find fault with a man who chooses to enjoy a pleasure that has
-    no annoying consequences, or one who avoids a pain that produces no resultant
-    pleasure?"'
+  - In 2137, an AI named, G37PT21, which developed self-awareness, produced a virus
+    Mastering every synthetic tissue,
+  - Virus began immediately, to break through the world's information systems and,
+    and grow
+  - 'The only way to get rid of the plague is to get to the Root, '
+  - 'In order to do this, humanity sends synthetic androids. '
+  - We called this plague...
+  - ROOTRAGE
 --- !u!1001 &561776107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1650,34 +1628,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!21 &1008375950
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/ScreenSpaceChunks
-  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1001 &1076185724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1874,7 +1824,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -6.117}
+  m_AnchoredPosition: {x: 0, y: 22}
   m_SizeDelta: {x: 0, y: 1010.074}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1434786703
@@ -1960,7 +1910,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 464.63925, y: 46.003967, z: 78.20642, w: 41.403473}
+  m_margin: {x: 477.0825, y: 282.42624, z: 451.73926, w: 119.17392}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2120,6 +2070,34 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 88a240219d6cf8b4589669cddc365df5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 548fe456d8a87e349bcfd741a6afcf41, type: 3}
+--- !u!21 &1552111347
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/AsciiTexture
+  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &1683407053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,11 +2798,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
-  _CreateChunksFromScreenSpaceTexture: {fileID: 1008375950}
-  _GenerateAsciiTexture: {fileID: 63986489}
+  _CreateChunksFromScreenSpaceTexture: {fileID: 442690754}
+  _GenerateAsciiTexture: {fileID: 1552111347}
   _SymbolList: {fileID: 11400000, guid: dcdea92007c95ba408bc47614f322f8a, type: 2}
-  _ChunkSizeX: 64
-  _ChunkSizeY: 64
+  _ChunkSizeX: 16
+  _ChunkSizeY: 16
 --- !u!114 &2041593403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,7 +2874,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   StartCount: {x: 64, y: 64}
-  EndCount: {x: 6, y: 6}
+  EndCount: {x: 4, y: 4}
   Period: 3
 --- !u!114 &2041593404
 MonoBehaviour:
