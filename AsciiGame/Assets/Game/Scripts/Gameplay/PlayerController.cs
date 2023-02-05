@@ -352,6 +352,7 @@ namespace Krakjam
         {
             var value = context.ReadValue<Vector2>();
             _Direction = new Vector2(value.y, value.x);
+            _PlayerMoving = true;
         }
 
         public void OnJump(InputAction.CallbackContext context)

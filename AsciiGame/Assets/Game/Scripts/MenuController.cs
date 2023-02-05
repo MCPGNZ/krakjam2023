@@ -10,6 +10,7 @@ namespace Krakjam
 
     public sealed class MenuController : MonoBehaviour
     {
+        public StoryController StoryBoardController;
         public Button NewGame;
         public Button Credits;
         public Button Exit;
@@ -34,7 +35,8 @@ namespace Krakjam
 
         private void OnStartClicked()
         {
-            SceneReferences.LoadGameplay();
+            StoryBoardController.OnStartClick += StartGame;
+            StoryBoardController.ShowStory = true;
         }
         private void OnCreditsClicked()
         {
@@ -47,6 +49,11 @@ namespace Krakjam
 #if UNITY_EDITOR
             EditorApplication.ExitPlaymode();
 #endif
+        }
+
+        private void StartGame()
+        {
+            SceneReferences.LoadGameplay();
         }
     }
 }
