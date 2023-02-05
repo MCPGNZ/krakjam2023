@@ -5,6 +5,18 @@ namespace Krakjam
 
     public sealed class WallMovement : MonoBehaviour
     {
+        #region Public Methods
+        public float WallSpeedMovement
+        {
+            get => _WallSpeedMovement;
+            set
+            {
+                if (_WallSpeedMovement == value) { return; }
+                _WallSpeedMovement = value;
+            }
+        }
+        #endregion Public Methods
+
         #region Inspector Variables
         [SerializeField] private Transform _PlayerTransform;
         [SerializeField] private float _WallSpeedMovement;

@@ -38,6 +38,6 @@ Material:
     - _Metallic: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PlaneNormal: {r: -0, g: 0.00000011920929, b: -1.0000001, a: 0}
-    - _PlanePosition: {r: 0, g: 1, b: -17.7, a: 0}
+    - _PlaneNormal: {r: -0.000011832731, g: 0.0000033378954, b: -1.0000004, a: 0}
+    - _PlanePosition: {r: -1.5606937, g: 4.3816648, b: -13.649999, a: 0}
   m_BuildTextureStacks: []

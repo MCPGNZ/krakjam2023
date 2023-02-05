@@ -32,3 +32,4 @@ MonoBehaviour:
   _DashStrength: 30
   _RotationToGroundNormal: 5
   _AnimationSpeed: 80
+  _MonsterSpeed: 6
