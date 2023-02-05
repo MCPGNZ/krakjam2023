@@ -123,34 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!21 &71473786
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/ScreenSpaceChunks
-  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!21 &75833876
 Material:
   serializedVersion: 8
@@ -179,7 +151,35 @@ Material:
     m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []
---- !u!21 &387923184
+--- !u!21 &177646023
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
+--- !u!21 &188794075
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750162049}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: -6.98}
+  m_LocalPosition: {x: 0, y: 1, z: -10.45}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1698,6 +1698,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1274122608754296294, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 5265565372247907850}
+    - target: {fileID: 1274122608754296294, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274122608754296294, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: f3326997-54a2-4ac3-ade7-96e6e929abd7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274122608754296294, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Default/Submit
+      objectReference: {fileID: 0}
     - target: {fileID: 5265565371852836104, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1774,6 +1790,11 @@ MonoBehaviour:
 --- !u!4 &5265565372247907849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5265565371852836104, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
+  m_PrefabInstance: {fileID: 5265565372247907847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &5265565372247907850 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5265565372068832835, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
   m_PrefabInstance: {fileID: 5265565372247907847}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &5265565372247907852

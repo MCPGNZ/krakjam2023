@@ -158,6 +158,7 @@ namespace Krakjam
             /* trap support */
             if (other.gameObject.layer == LayerMask.NameToLayer("Trap"))
             {
+                PlayerAudioSource.PlayOneShot(GameBalance.PlayerHitSound);
                 Debug.LogError("It's a trap");
             }
         }
