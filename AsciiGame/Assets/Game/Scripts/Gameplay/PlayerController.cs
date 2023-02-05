@@ -7,6 +7,9 @@ namespace Krakjam
     public sealed class PlayerController : MonoBehaviour
     {
         #region Public Variables
+        public AudioSource MonsterAudioSource;
+        public AudioSource PlayerAudioSource;
+
         public Action OnDeath;
         public Action OnPickUpAction;
 
@@ -51,6 +54,7 @@ namespace Krakjam
         private void Awake()
         {
             _Rigidbody = GetComponent<Rigidbody>();
+            PlayerAudioSource = GetComponent<AudioSource>();
         }
 
         private void OnEnable()
@@ -78,7 +82,14 @@ namespace Krakjam
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
-
+            if (_PlayerMoving)
+            {
+                if (!PlayerAudioSource.isPlaying && IsGrounded)
+                {
+                    PlayerAudioSource.PlayOneShot(GameBalance.PlayerFootsteps);
+                }
+                _PlayerMoving = false;
+            }
             _Direction = Vector2.zero;
 
             if (_DashTimer <= 0.0f)
@@ -89,12 +100,14 @@ namespace Krakjam
 
             if (_Jump)
             {
+                PlayerAudioSource.PlayOneShot(GameBalance.PlayerJumpSound);
                 _Rigidbody.AddForce(_GroundNormal * GameBalance.JumpStrength, ForceMode.Impulse);
 
                 _Jump = false;
             }
             if (_Dash && !_DashedOnce)
             {
+                PlayerAudioSource.PlayOneShot(GameBalance.PlayerDeathSound);
                 if (!IsGrounded) { _Rigidbody.AddForce(Camera.transform.forward * GameBalance.DashStrength, ForceMode.Impulse); }
                 _Dash = false;
                 _DashedOnce = true;
@@ -131,6 +144,7 @@ namespace Krakjam
                 Game.Score++;
                 OnPickUpAction?.Invoke();
                 orbController.Pickup();
+                PlayerAudioSource.PlayOneShot(GameBalance.PlayerPickupOrb);
             }
         }
 
@@ -170,7 +184,8 @@ namespace Krakjam
         private bool _Jump;
         private bool _Dash;
         private bool _DashedOnce = false;
-        [SerializeField] private float _DashTimer = 2.0f;
+        private bool _PlayerMoving = false;
+        private float _DashTimer = 2.0f;
 
         private int _RayCount = 32;
         private Transform _Ground;
@@ -186,11 +201,28 @@ namespace Krakjam
         #region Private Methods
         private void UpdateMovement()
         {
+            _PlayerMoving = false;
             /* movement */
-            if (Input.GetKey(KeyCode.W)) { _Direction += new Vector2(1.0f, 0.0f); }
-            if (Input.GetKey(KeyCode.S)) { _Direction += new Vector2(-1.0f, 0.0f); }
-            if (Input.GetKey(KeyCode.A)) { _Direction += new Vector2(0.0f, -1.0f); }
-            if (Input.GetKey(KeyCode.D)) { _Direction += new Vector2(0.0f, 1.0f); }
+            if (Input.GetKey(KeyCode.W))
+            {
+                _PlayerMoving = true;
+                _Direction += new Vector2(1.0f, 0.0f);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                _PlayerMoving = true;
+                _Direction += new Vector2(-1.0f, 0.0f);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                _PlayerMoving = true;
+                _Direction += new Vector2(0.0f, -1.0f);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                _PlayerMoving = true;
+                _Direction += new Vector2(0.0f, 1.0f);
+            }
 
             if (IsGrounded)
             {
@@ -220,6 +252,9 @@ namespace Krakjam
         }
         private void UpdateLife()
         {
+            float monterVolume = Mathf.Lerp(GameBalance.MaxVolume, 0.0f, Mathf.Pow(Normalization(Life, 0.0f, GameBalance.Life), 4.0f));
+
+            MonsterAudioSource.volume = monterVolume;
             /* life */
             if (CurrentSpeed < SpeedThreshold)
             {
@@ -227,6 +262,7 @@ namespace Krakjam
                 if (Life <= 0.0f)
                 {
                     IsDead = true;
+                    PlayerAudioSource.PlayOneShot(GameBalance.PlayerDeathSound);
                     OnDeath?.Invoke();
                     return;
                 }
@@ -236,6 +272,11 @@ namespace Krakjam
                 Life += Time.deltaTime;
                 Life = Mathf.Min(Life, GameBalance.Life);
             }
+        }
+
+        private float Normalization(float value, float min, float max)
+        {
+            return (value - min) / (max - min);
         }
         private void UpdateGround()
         {

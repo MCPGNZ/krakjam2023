@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+        m_Texture: {fileID: 10309, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -31,5 +31,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _PlaneNormal: {r: -0, g: 0.00000011920929, b: -1.0000001, a: 0}
-    - _PlanePosition: {r: 0.49, g: -1.1, b: -24.7, a: 0}
+    - _PlanePosition: {r: 0, g: 1, b: -6.98, a: 0}
   m_BuildTextureStacks: []

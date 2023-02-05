@@ -6,6 +6,33 @@ namespace Krakjam
     [CreateAssetMenu(menuName = "Krakjam/Game Balance")]
     public class GameBalance : ScriptableObjectSingleton<GameBalance>
     {
+        [FoldoutGroup("Player audio", true)]
+        [Range(0.0f, 1.0f)]
+        public float _MaxVolume;
+        public static float MaxVolume => Instance._MaxVolume;
+
+        [FoldoutGroup("Player AudioSource", true)]
+        public AudioClip _PlayerFootstepsSound;
+        public static AudioClip PlayerFootsteps => Instance._PlayerFootstepsSound;
+
+        public AudioClip _PlayerDeathSound;
+        public static AudioClip PlayerDeathSound => Instance._PlayerDeathSound;
+
+        public AudioClip _PlayerHitSound;
+        public static AudioClip PlayerHitSound => Instance._PlayerHitSound;
+
+        public AudioClip _PlayerJumpSound;
+        public static AudioClip PlayerJumpSound => Instance._PlayerJumpSound;
+
+        public AudioClip _PlayerDashSound;
+        public static AudioClip PlayerDashSound => Instance._PlayerDashSound;
+
+        public AudioClip _MonsterSound;
+        public static AudioClip MonsterSound => Instance._MonsterSound;
+
+        public AudioClip _PlayerPickupOrb;
+        public static AudioClip PlayerPickupOrb => Instance._PlayerPickupOrb;
+
         [FoldoutGroup("Player", true)]
         public float _Life = 100.0f;
         public static float Life => Instance._Life;
