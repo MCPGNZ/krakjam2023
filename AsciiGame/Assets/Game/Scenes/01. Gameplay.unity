@@ -315,34 +315,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!21 &680531652
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/ScreenSpaceChunks
-  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!43 &717011274
 Mesh:
   m_ObjectHideFlags: 0
@@ -959,34 +931,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2393523347662768806, guid: 8fffc4adeb40e9a4c8c767e3511e3fd4, type: 3}
   m_PrefabInstance: {fileID: 2048892924}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1093543898
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/AsciiTexture
-  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1 &1167879892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,18 +1689,14 @@ PrefabInstance:
       propertyPath: MonsterAudioSource
       value: 
       objectReference: {fileID: 720035830}
-    - target: {fileID: 5265565371852836117, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
-      propertyPath: RotationSensitivity
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5265565372247907850, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
       propertyPath: _GenerateAsciiTexture
       value: 
-      objectReference: {fileID: 1093543898}
+      objectReference: {fileID: 220254819}
     - target: {fileID: 5265565372247907850, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
       propertyPath: _CreateChunksFromScreenSpaceTexture
       value: 
-      objectReference: {fileID: 680531652}
+      objectReference: {fileID: 1607398019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
 --- !u!114 &5265565372247907848 stripped
