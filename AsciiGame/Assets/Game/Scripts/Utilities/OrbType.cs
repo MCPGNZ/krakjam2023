@@ -5,12 +5,12 @@ namespace Krakjam
     public class OrbType : ScriptableObject
     {
         #region Public Variables
-        public float SpeedChange => _SpeedChange;
+        public int ResolutionChangeRate => _ResolutionChangeRate;
         #endregion Public Variables
 
         #region Inspector Variables
-        [Range(-1000.0f, 1000.0f)]
-        [SerializeField] private float _SpeedChange;
+        [Range(0, 100)]
+        [SerializeField] private int _ResolutionChangeRate;
         #endregion Inspector Variables
     }
 }

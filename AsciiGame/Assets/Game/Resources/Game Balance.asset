@@ -31,7 +31,11 @@ MonoBehaviour:
   _SpeedThreshold: 5
   _DashStrength: 30
   _RotationToGroundNormal: 5
+  _LifeTimeChangeSpeed: 3
   _AnimationSpeed: 80
   _MonsterSpeed: 0
   _DeathHeighOffset: -30
   _ResolutionChangeStrength: 32
+  _ResolutionChangeTimer: 5
+  _DefaultChunkSize: 16
+  _DefaultChunkSizeMax: 32

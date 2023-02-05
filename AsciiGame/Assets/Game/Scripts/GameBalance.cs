@@ -96,5 +96,16 @@ namespace Krakjam
         [FoldoutGroup("Resolution change")]
         public float _ResolutionChangeStrength;
         public static float ResolutionChangeStrength => Instance._ResolutionChangeStrength;
+
+        public float _ResolutionChangeTimer;
+        public static float ResolutionChangeTimer => Instance._ResolutionChangeTimer;
+
+        [Range(8, 32)]
+        public int _DefaultChunkSize;
+        public static int DefaultChunkSize => Instance._DefaultChunkSize;
+
+        [Range(16, 32)]
+        public int _DefaultChunkSizeMax;
+        public static int DefaultChunkSizeMax => Instance._DefaultChunkSizeMax;
     }
 }

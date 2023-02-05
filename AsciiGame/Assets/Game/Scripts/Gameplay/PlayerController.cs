@@ -66,6 +66,9 @@ namespace Krakjam
 
             _PreviousChunkX = _SplitScreenChunks.ChunkSizeX;
             _PreviousChunkY = _SplitScreenChunks.ChunkSizeY;
+            _ChunkXChangeRate = 0;
+            _ChunkYChangeRate = 0;
+            _ResolutionChangeTimer = GameBalance.ResolutionChangeTimer;
         }
         private void OnDisable()
         {
@@ -89,6 +92,14 @@ namespace Krakjam
                     }
                 }
                 return;
+            }
+            _ResolutionChangeTimer -= Time.deltaTime;
+            if (_ResolutionChangeTimer <= 0.0f)
+            {
+                _ResolutionChangeTimer = GameBalance.ResolutionChangeTimer;
+                _PreviousChunkX = _SplitScreenChunks.ChunkSizeX;
+                _PreviousChunkY = _SplitScreenChunks.ChunkSizeY;
+                _SplitScreenChunks.Resize(Mathf.Min(_PreviousChunkX + 2, GameBalance.DefaultChunkSizeMax), Mathf.Min(_PreviousChunkX + 2, GameBalance.DefaultChunkSizeMax));
             }
             if (_InfoDisplayTImer >= 0.0f)
             {
@@ -172,9 +183,9 @@ namespace Krakjam
             var orbController = rigidbody.GetComponent<OrbController>();
             if (orbController != null)
             {
-                var orbType = orbController.OrbType;
-                MovementSpeedMultiplicator += orbController.OrbType.SpeedChange;
-                MovementSpeedMultiplicator = Math.Clamp(MovementSpeedMultiplicator, MIN_SPEED, MAX_SPEED);
+                _PreviousChunkX = _SplitScreenChunks.ChunkSizeX;
+                _PreviousChunkY = _SplitScreenChunks.ChunkSizeY;
+                _SplitScreenChunks.Resize(Mathf.Max(_PreviousChunkX - orbController.OrbType.ResolutionChangeRate, GameBalance.DefaultChunkSize), Mathf.Max(_PreviousChunkY - orbController.OrbType.ResolutionChangeRate, GameBalance.DefaultChunkSize));
                 Game.Score++;
                 OnPickUpAction?.Invoke();
                 orbController.Pickup();
@@ -243,6 +254,11 @@ namespace Krakjam
         private int _PreviousChunkX;
         private int _PreviousChunkY;
 
+        private int _ChunkXChangeRate;
+        private int _ChunkYChangeRate;
+
+        private float _ResolutionChangeTimer;
+
         private float _DefaultSpeed = 1.0f;
 
         private bool _IsAnimationEnd = false;
@@ -255,12 +271,6 @@ namespace Krakjam
 
             MonsterAudioSource.volume = monterVolume;
             /* life */
-
-            var t = Mathf.Pow(Normalization(Life, 0.0f, GameBalance.Life), GameBalance.ResolutionChangeStrength);
-
-            var resizeX = (int)Mathf.Round(Mathf.Lerp(_PreviousChunkX + 8.0f, _PreviousChunkX - 4.0f, t));
-            var resizeY = (int)Mathf.Round(Mathf.Lerp(_PreviousChunkY + 8.0f, _PreviousChunkY - 4.0f, t));
-            _SplitScreenChunks.Resize(Mathf.Max(resizeX, 8), Mathf.Max(resizeY, 8));
 
             if (CurrentSpeed < SpeedThreshold)
             {
