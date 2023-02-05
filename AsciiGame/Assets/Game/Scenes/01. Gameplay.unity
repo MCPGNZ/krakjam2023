@@ -123,6 +123,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!21 &220254819
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/AsciiTexture
+  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!43 &408136235
 Mesh:
   m_ObjectHideFlags: 0
@@ -760,7 +788,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!43 &849112210
 Mesh:
@@ -1313,6 +1341,34 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!21 &1607398019
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!850595691 &1676650317
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1689,6 +1745,10 @@ PrefabInstance:
       propertyPath: MonsterAudioSource
       value: 
       objectReference: {fileID: 720035830}
+    - target: {fileID: 5265565371852836117, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
+      propertyPath: RotationSensitivity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5265565372247907850, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
       propertyPath: _GenerateAsciiTexture
       value: 
@@ -1715,71 +1775,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5265565371852836104, guid: 0d32d94fcc7da9c40bb91cdd816ec23d, type: 3}
   m_PrefabInstance: {fileID: 5265565372247907847}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6228699812175030674
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6228699810560322741, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_Name
-      value: Platform
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322741, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699810560322746, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228699811823906556, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: cebdca81764b4334c98650b27b949403, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
 --- !u!1001 &7327254387096910071
 PrefabInstance:
   m_ObjectHideFlags: 0

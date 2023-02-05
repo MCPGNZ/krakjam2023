@@ -23,9 +23,6 @@ namespace Krakjam
 
         public Camera Camera;
 
-        /* movement parameters */
-        public float RotationSensitivity = .5f;
-
         /* jump parameters */
         public float DistanceToGround = 0.1f;
         public LayerMask GroundMask;
@@ -74,8 +71,8 @@ namespace Krakjam
             if (IsDead) { return; }
 
             /* update value */
-            _Turn.x += _TurnInput.x * RotationSensitivity;
-            _Turn.y += _TurnInput.y * RotationSensitivity;
+            _Turn.x += _TurnInput.x * GameBalance.RotationSensitivity;
+            _Turn.y += _TurnInput.y * GameBalance.RotationSensitivity;
             Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0.0f); ;
 
             UpdateLife();

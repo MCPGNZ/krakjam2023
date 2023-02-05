@@ -22,7 +22,7 @@ MonoBehaviour:
   _MonsterSound: {fileID: 8300000, guid: 5dbf851e582893a4e8f1e0f9eaccfdb2, type: 3}
   _PlayerPickupOrb: {fileID: 8300000, guid: 55c556c133a4e6a42836092791145d7f, type: 3}
   _Life: 100
-  _MovementSpeed: 1500
+  _MovementSpeed: 3500
   _JumpStrength: 15
   _Friction: 100
   _MaxFriction: 15

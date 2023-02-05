@@ -264,7 +264,7 @@ MonoBehaviour:
   SpeedThreshold: 5
   MovementSpeedMultiplicator: 1
   Camera: {fileID: 5265565372068832835}
-  RotationSensitivity: 3
+  RotationSensitivity: 1.5
   DistanceToGround: 2
   GroundMask:
     serializedVersion: 2

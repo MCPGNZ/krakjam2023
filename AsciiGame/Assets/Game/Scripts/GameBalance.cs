@@ -45,6 +45,10 @@ namespace Krakjam
         public static float MovementSpeed => Instance._MovementSpeed;
 
         [FoldoutGroup("Player", true)]
+        public float _RotationSensitivity = 1.5f;
+        public static float RotationSensitivity => Instance._RotationSensitivity;
+
+        [FoldoutGroup("Player", true)]
         public float _JumpStrength = 10.0f;
         public static float JumpStrength => Instance._JumpStrength;
 
