@@ -25,7 +25,6 @@ namespace Krakjam
 
         /* movement parameters */
         public float RotationSensitivity = .5f;
-        public float RotationSpeed = 1;
 
         /* jump parameters */
         public float DistanceToGround = 0.1f;
@@ -97,7 +96,6 @@ namespace Krakjam
                 }
                 _PlayerMoving = false;
             }
-            _Direction = Vector2.zero;
 
             if (_DashTimer <= 0.0f)
             {
@@ -215,57 +213,6 @@ namespace Krakjam
         #endregion Private Variables
 
         #region Private Methods
-        private void UpdateMovement()
-        {
-            _PlayerMoving = false;
-            /* movement */
-            if (Input.GetKey(KeyCode.W))
-            {
-                _PlayerMoving = true;
-                _Direction += new Vector2(1.0f, 0.0f);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                _PlayerMoving = true;
-                _Direction += new Vector2(-1.0f, 0.0f);
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                _PlayerMoving = true;
-                _Direction += new Vector2(0.0f, -1.0f);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                _PlayerMoving = true;
-                _Direction += new Vector2(0.0f, 1.0f);
-            }
-
-            if (IsGrounded)
-            {
-                _DashedOnce = false;
-                /* jump */
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (_Ground != null)
-                    {
-                        _Jump = true;
-                    }
-                }
-            }
-            /* Dash */
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (_Ground == null)
-                {
-                    _Dash = true;
-                }
-            }
-
-            /* look */
-            _Turn.x += Input.GetAxis("Mouse X") * RotationSensitivity;
-            _Turn.y += Input.GetAxis("Mouse Y") * RotationSensitivity;
-            Camera.transform.localRotation = Quaternion.Euler(-_Turn.y, _Turn.x, 0.0f);
-        }
         private void UpdateLife()
         {
             float monterVolume = Mathf.Lerp(GameBalance.MaxVolume, 0.0f, Mathf.Pow(Normalization(Life, 0.0f, GameBalance.Life), GameBalance.VolumeChangeRateStrength));
