@@ -4,6 +4,9 @@ namespace Krakjam
     using TMPro;
     using System.Collections.Generic;
     using System;
+    using UnityEditor.Timeline.Actions;
+    using UnityEngine.InputSystem;
+    using UnityEngine.InputSystem.UI;
 
     public sealed class StoryController : MonoBehaviour
     {
@@ -22,6 +25,8 @@ namespace Krakjam
         [SerializeField] private List<GameObject> _Frames;
         [SerializeField] private float _StoryBoardShowTime;
         [SerializeField] private List<string> _StoryBoards;
+
+        [SerializeField] private List<InputActionAsset> _InputAssets;
         #endregion Inspector Variables
 
         #region Unity Methods
@@ -74,12 +79,7 @@ namespace Krakjam
             }
             if (_CurrentStoryBoardTimer <= 0.0f)
             {
-                _CurrentStoryBoardTimer = _StoryBoardShowTime;
-                _CurrentIndex++;
-                if (_CurrentIndex < _StoryBoards.Count)
-                {
-                    CurrentVisibleStoryBoard.text = _StoryBoards[_CurrentIndex];
-                }
+                NextStoryboard();
             }
             _CurrentStoryBoardTimer -= Time.deltaTime;
         }
@@ -90,5 +90,37 @@ namespace Krakjam
         private int _CurrentIndex;
         private bool _FramesDisabled = false;
         #endregion Private Variables
+
+        public void NextStoryboard(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                NextStoryboard();
+            }
+        }
+        public void NextStoryboard()
+        {
+            _CurrentStoryBoardTimer = _StoryBoardShowTime;
+            _CurrentIndex++;
+            if (_CurrentIndex < _StoryBoards.Count)
+            {
+                CurrentVisibleStoryBoard.text = _StoryBoards[_CurrentIndex];
+            }
+        }
+
+        public void EnableInput()
+        {
+            foreach (var asset in _InputAssets)
+            {
+                asset.Enable();
+            }
+        }
+        public void DisableInput()
+        {
+            foreach (var asset in _InputAssets)
+            {
+                asset.Disable();
+            }
+        }
     }
 }

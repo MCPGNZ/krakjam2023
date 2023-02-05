@@ -38,6 +38,7 @@ namespace Krakjam
 
         private void OnStartClicked()
         {
+            StoryBoardController.DisableInput();
             StoryBoardController.OnStartClick += StartGame;
             StoryBoardController.ShowStory = true;
         }
@@ -60,6 +61,7 @@ namespace Krakjam
 
         private void StartGame()
         {
+            StoryBoardController.EnableInput();
             SceneReferences.LoadGameplay();
         }
     }
