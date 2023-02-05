@@ -18,7 +18,7 @@ namespace Krakjam
             GenerateDefault();
         }
 
-        private List<Platform> _InstantiatedPlatforms;
+        private List<Platform> _InstantiatedPlatforms = new List<Platform>();
 
         [Button]
         private void GenerateDefault()

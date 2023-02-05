@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Platform Container
   m_EditorClassIdentifier: 
   Default:
-  - {fileID: 0}
+  - {fileID: 6228699810560322747, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
   Advanced:
-  - {fileID: 0}
+  - {fileID: 6228699810560322747, guid: ecc988aa5f5b11a4bb09742de9df3f62, type: 3}
