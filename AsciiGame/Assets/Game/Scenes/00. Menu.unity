@@ -123,6 +123,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!21 &54240084
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/AsciiTexture
+  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1 &64714365
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,34 +410,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &222635250
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/ScreenSpaceChunks
-  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!4 &264146118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5226664780096283930, guid: 548fe456d8a87e349bcfd741a6afcf41, type: 3}
@@ -1066,7 +1066,7 @@ MonoBehaviour:
   - We called this plague...
   - ROOTRAGE
   - Collect orbs or your screen gonna crash
-  - 'Movement: WSAD/Left Stick, Jump: Space/X, Dash: Left Shift/R1, Back: escape'
+  - 'Movement: WSAD/Left Stick\n Jump: Space/X\n Dash: Left Shift/R1\n Back: escape'
   _InputAssets:
   - {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
 --- !u!114 &452843451
@@ -1135,34 +1135,6 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!21 &550441742
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Krakjam/AsciiTexture
-  m_Shader: {fileID: 4800000, guid: 0a0e57809630d284ca3325a6db73066c, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors: []
-  m_BuildTextureStacks: []
 --- !u!1001 &561776107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1937,6 +1909,34 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 88a240219d6cf8b4589669cddc365df5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 548fe456d8a87e349bcfd741a6afcf41, type: 3}
+--- !u!21 &1141897348
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Krakjam/ScreenSpaceChunks
+  m_Shader: {fileID: 4800000, guid: e8c6335a6c0ede04eb7b00ae9eb66e42, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors: []
+  m_BuildTextureStacks: []
 --- !u!1001 &1171057582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3209,8 +3209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PrepareTextureToGenerateAsciiTexture: {fileID: 7200000, guid: 10a2cf35e8d355e41ab264709a8c2fea, type: 3}
-  _CreateChunksFromScreenSpaceTexture: {fileID: 222635250}
-  _GenerateAsciiTexture: {fileID: 550441742}
+  _CreateChunksFromScreenSpaceTexture: {fileID: 1141897348}
+  _GenerateAsciiTexture: {fileID: 54240084}
   _SymbolList: {fileID: 11400000, guid: dcdea92007c95ba408bc47614f322f8a, type: 2}
   _ChunkSizeX: 16
   _ChunkSizeY: 16
