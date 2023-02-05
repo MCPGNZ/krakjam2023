@@ -16,6 +16,7 @@ namespace Krakjam
 
         public bool IsDead;
         public float SpeedThreshold = 10.0f;
+        public float MovementSpeedMultiplicator = 1.0f;
 
         public Camera Camera;
 
@@ -39,7 +40,7 @@ namespace Krakjam
             get
             {
                 if (_Rigidbody == null) { return 0.0f; }
-                return _Rigidbody.velocity.magnitude;
+                return _Rigidbody.velocity.magnitude * MovementSpeedMultiplicator;
             }
         }
 
@@ -76,12 +77,19 @@ namespace Krakjam
 
             UpdateLife();
             UpdateGround();
+            if (!_DashedOnce) { _DashTimer -= Time.deltaTime; }
         }
         private void FixedUpdate()
         {
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
+
+            if (_DashTimer <= 0.0f)
+            {
+                _DashTimer = 2.0f;
+                _DashedOnce = false;
+            }
 
             if (_Jump)
             {
@@ -91,8 +99,7 @@ namespace Krakjam
             }
             if (_Dash && !_DashedOnce)
             {
-                Debug.Log("YEAH");
-                _Rigidbody.AddForce(Camera.transform.forward * GameBalance.DashStrength, ForceMode.Impulse);
+                if (!IsGrounded) { _Rigidbody.AddForce(Camera.transform.forward * GameBalance.DashStrength, ForceMode.Impulse); }
                 _Dash = false;
                 _DashedOnce = true;
             }
@@ -119,8 +126,8 @@ namespace Krakjam
             if (orbController != null)
             {
                 var orbType = orbController.OrbType;
-                //MovementSpeed += orbController.OrbType.SpeedChange;
-                //MovementSpeed = Math.Clamp(MovementSpeed, MIN_SPEED, MAX_SPEED);
+                MovementSpeedMultiplicator += orbController.OrbType.SpeedChange;
+                MovementSpeedMultiplicator = Math.Clamp(MovementSpeedMultiplicator, MIN_SPEED, MAX_SPEED);
                 var previousXChunks = _SplitScreenChunks.ChunkSizeX;
                 var previousYChunks = _SplitScreenChunks.ChunkSizeY;
                 var resizeX = Mathf.Clamp(previousXChunks + orbType.ResolutionChange, MIN_CHUNK_SIZE, MAX_CHUNK_SIZE);
@@ -173,13 +180,14 @@ namespace Krakjam
         private bool _Jump;
         private bool _Dash;
         private bool _DashedOnce = false;
+        [SerializeField] private float _DashTimer = 2.0f;
 
         private int _RayCount = 32;
         private Transform _Ground;
         private Vector3 _GroundNormal;
 
-        private const float MIN_SPEED = 100.0f;
-        private const float MAX_SPEED = 1500.0f;
+        private const float MIN_SPEED = 0.2f;
+        private const float MAX_SPEED = 7.0f;
 
         private const int MAX_CHUNK_SIZE = 16;
         private const int MIN_CHUNK_SIZE = 8;

@@ -19,5 +19,5 @@ MonoBehaviour:
   _MaxFriction: 15
   _AirSpeed: 0.15
   _SpeedThreshold: 5
-  _DashStrength: 100
+  _DashStrength: 30
   _RotationToGroundNormal: 5
