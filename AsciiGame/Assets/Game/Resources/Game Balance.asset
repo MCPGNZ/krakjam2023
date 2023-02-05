@@ -36,6 +36,6 @@ MonoBehaviour:
   _MonsterSpeed: 0
   _DeathHeighOffset: -7
   _ResolutionChangeStrength: 32
-  _ResolutionChangeTimer: 5
+  _ResolutionChangeTimer: 10
   _DefaultChunkSize: 16
-  _DefaultChunkSizeMax: 32
+  _DefaultChunkSizeMax: 24
