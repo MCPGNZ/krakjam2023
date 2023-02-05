@@ -226,7 +226,7 @@ namespace Krakjam
         private bool _DashedOnce = false;
         private float _DashTimer = 2.0f;
 
-        private int _RayCount = 32;
+        [SerializeField] private int _RayCount = 128;
         private Transform _Ground;
         private Vector3 _GroundNormal;
 
