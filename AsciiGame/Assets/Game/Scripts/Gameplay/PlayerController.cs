@@ -63,6 +63,9 @@ namespace Krakjam
             _SplitScreenChunks = GetComponentInChildren<SplitScreenToChunks>();
             Life = GameBalance.Life;
             Cursor.lockState = CursorLockMode.Locked;
+
+            _PreviousChunkX = _SplitScreenChunks.ChunkSizeX;
+            _PreviousChunkY = _SplitScreenChunks.ChunkSizeY;
         }
         private void OnDisable()
         {
@@ -124,23 +127,10 @@ namespace Krakjam
             {
                 return;
             }
-            if (_Direction != Vector2.zero)
-            {
-                _PlayerMoving = true;
-            }
 
             var modifier = IsGrounded ? 1.0f : GameBalance.AirSpeed;
             _Rigidbody.AddForce(modifier * Camera.transform.forward * (GameBalance.MovementSpeed * _Direction.x * Time.fixedDeltaTime), ForceMode.Force);
             _Rigidbody.AddForce(modifier * Camera.transform.right * (GameBalance.MovementSpeed * _Direction.y * Time.fixedDeltaTime), ForceMode.Force);
-
-            if (_PlayerMoving)
-            {
-                if (!PlayerAudioSource.isPlaying && IsGrounded)
-                {
-                    PlayerAudioSource.PlayOneShot(GameBalance.PlayerFootsteps);
-                }
-                _PlayerMoving = false;
-            }
 
             if (_DashTimer <= 0.0f)
             {
@@ -150,14 +140,12 @@ namespace Krakjam
 
             if (_Jump)
             {
-                PlayerAudioSource.PlayOneShot(GameBalance.PlayerJumpSound);
                 _Rigidbody.AddForce(_GroundNormal * GameBalance.JumpStrength, ForceMode.Impulse);
 
                 _Jump = false;
             }
             if (_Dash && !_DashedOnce)
             {
-                PlayerAudioSource.PlayOneShot(GameBalance.PlayerDeathSound);
                 if (!IsGrounded) { _Rigidbody.AddForce(Camera.transform.forward * GameBalance.DashStrength, ForceMode.Impulse); }
                 _Dash = false;
                 _DashedOnce = true;
@@ -241,7 +229,6 @@ namespace Krakjam
         private bool _Jump;
         private bool _Dash;
         private bool _DashedOnce = false;
-        private bool _PlayerMoving = false;
         private float _DashTimer = 2.0f;
 
         private int _RayCount = 32;
@@ -261,6 +248,9 @@ namespace Krakjam
         private float _AnimationRotationFactor;
         private const float _AnimationRotationThreshold = 180.0f;
 
+        private int _PreviousChunkX;
+        private int _PreviousChunkY;
+
         private bool _IsAnimationEnd = false;
         #endregion Private Variables
 
@@ -271,6 +261,13 @@ namespace Krakjam
 
             MonsterAudioSource.volume = monterVolume;
             /* life */
+
+            var t = Mathf.Pow(Normalization(Life, 0.0f, GameBalance.Life), GameBalance.ResolutionChangeStrength);
+
+            var resizeX = (int)Mathf.Round(Mathf.Lerp(_PreviousChunkX + 8.0f, _PreviousChunkX - 4.0f, t));
+            var resizeY = (int)Mathf.Round(Mathf.Lerp(_PreviousChunkY + 8.0f, _PreviousChunkY - 4.0f, t));
+            _SplitScreenChunks.Resize(Mathf.Max(resizeX, 8), Mathf.Max(resizeY, 8));
+
             if (CurrentSpeed < SpeedThreshold)
             {
                 Life -= Time.deltaTime;
@@ -284,7 +281,7 @@ namespace Krakjam
             }
             else
             {
-                Life += Time.deltaTime;
+                Life += Time.deltaTime * GameBalance.LifeTimeChangeSpeed;
                 Life = Mathf.Min(Life, GameBalance.Life);
             }
         }

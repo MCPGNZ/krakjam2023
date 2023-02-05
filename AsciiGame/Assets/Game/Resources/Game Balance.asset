@@ -19,7 +19,7 @@ MonoBehaviour:
   _PlayerHitSound: {fileID: 8300000, guid: 2838304230ccff942836e5de9c51575d, type: 3}
   _PlayerJumpSound: {fileID: 8300000, guid: 2b16e9c44b5995f418a397ad4ea374ec, type: 3}
   _PlayerDashSound: {fileID: 8300000, guid: 30b54ee410f535e4b9aaee2024b2d1cf, type: 3}
-  _MonsterSound: {fileID: 8300000, guid: 5dbf851e582893a4e8f1e0f9eaccfdb2, type: 3}
+  _MonsterSound: {fileID: 8300000, guid: 0c108b803e5c05f499b20012d107b45a, type: 3}
   _PlayerPickupOrb: {fileID: 8300000, guid: 55c556c133a4e6a42836092791145d7f, type: 3}
   _Life: 100
   _MovementSpeed: 3500
@@ -34,3 +34,4 @@ MonoBehaviour:
   _AnimationSpeed: 80
   _MonsterSpeed: 0
   _DeathHeighOffset: -30
+  _ResolutionChangeStrength: 32
