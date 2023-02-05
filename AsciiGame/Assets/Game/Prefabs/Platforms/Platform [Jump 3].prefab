@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntryGate: {fileID: 5422981845629073398}
   ExitGate: {fileID: 5422981845468642863}
-  Lenght: 15.14375
+  Lenght: 16.8
   PlayerInside: 0
 --- !u!1 &5422981845468642858
 GameObject:
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5422981845468642858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 15.24}
+  m_LocalPosition: {x: 0, y: 1, z: 16.79}
   m_LocalScale: {x: 10, y: 10, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -168,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5422981845629073392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -0}
   m_LocalScale: {x: 10, y: 10, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -222,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3124642352698879313, guid: b3e5d2012c4979f45afce2944b3f9580, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.79
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 3124642352698879313, guid: b3e5d2012c4979f45afce2944b3f9580, type: 3}
       propertyPath: m_LocalRotation.w
