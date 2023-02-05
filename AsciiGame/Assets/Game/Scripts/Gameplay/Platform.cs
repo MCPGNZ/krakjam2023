@@ -42,15 +42,11 @@
         {
             Started?.Invoke();
             PlayerInside = true;
-
-            Debug.Log("Entered");
         }
         private void OnExit()
         {
             PlayerInside = false;
             Finished?.Invoke();
-
-            Debug.Log("Exited");
         }
 
         private void OnDrawGizmos()
